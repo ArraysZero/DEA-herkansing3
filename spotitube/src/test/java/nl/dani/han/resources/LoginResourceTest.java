@@ -29,12 +29,12 @@ class LoginResourceTest {
 	@Mock
 	LoginService loginService;
 
-	// @InjectMocks
+	@InjectMocks
 	LoginResource loginResource;
 
 	@BeforeEach
 	void setUp() {
-		loginResource = new LoginResource();
+		// loginResource = new LoginResource();
 		request = new LoginRequest();
 		request.user = DUMMY_USER;
 		request.password = DUMMY_PASSWORD;
