@@ -18,7 +18,13 @@ public class LoginService {
 	}
 
 	private String generateToken() {
-		return "";
+		String token = (int) (Math.random() * 10000) + "-"
+				+ (int) (Math.random() * 10000) + "-"
+				+ (int) (Math.random() * 10000)
+				+ "-" + (int) (Math.random() * 10000);
+
+		// TODO add token to existing tokens
+		return token;
 	}
 
 	public boolean tokenExists(String token) {
