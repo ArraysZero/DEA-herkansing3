@@ -1,28 +1,27 @@
 package nl.dani.han.services;
 
-import javax.inject.Inject;
-
-import nl.dani.han.daos.DataAccessException;
-import nl.dani.han.daos.TokenDAO;
-import nl.dani.han.daos.UserDAO;
+import nl.dani.han.daos.LoginDAO;
+import nl.dani.han.dtos.LoginDTO;
+import nl.dani.han.dtos.UserDTO;
+import nl.dani.han.exceptions.LoginException;
 
 public class LoginService {
 
-	@Inject
-	UserDAO userDAO;
+	private LoginDAO loginDAO = new LoginDAO();
 
-	@Inject
-	TokenDAO tokenDAO;
-
-	public String login(String username, String password) throws ServiceException, DataAccessException {
-		// if (userDAO == null) {
-		// userDAO = new UserDAO();
-		// tokenDAO = new TokenDAO();
-		// }
-		if (userDAO.userExists(username, password)) {
-			return tokenDAO.generateToken(username);
+	public LoginDTO login(UserDTO user) throws LoginException {
+		if (user.equals(loginDAO.getUser(user))) {
+			return new LoginDTO(generateToken(), user.getUser());
+		} else {
+			throw new LoginException("login failed");
 		}
+	}
 
-		throw new ServiceException("password or username incorrect");
+	private String generateToken() {
+		return "";
+	}
+
+	public boolean tokenExists(String token) {
+		return true; // TODO implement
 	}
 }
