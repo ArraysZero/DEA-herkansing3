@@ -34,4 +34,8 @@ public class PlaylistService {
 	public TrackListDTO addTrack(int id, TrackDTO track) throws PlaylistException { // TODO implement
 		return playlistDAO.getTracks(id);
 	}
+
+	public TrackListDTO deleteTrack(int playlist, int track) throws PlaylistException { // TODO implement
+		return playlistDAO.getTracks(playlist);
+	}
 }

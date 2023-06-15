@@ -1,3 +1,4 @@
 hoe kan ik de token oppakken uit de URL?
 waarom doen @DELETE en @PUT het niet? (405)
 functies met path params geven altijd 405?
+waarom worden mijn tests niet herkend

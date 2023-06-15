@@ -94,7 +94,7 @@ public class PlaylistResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteTrackPlaylistId(@PathParam("id") Integer playlistId, @PathParam("id") Integer trackId) {
 		try {
-			return Response.status(Response.Status.OK).build();
+			return Response.status(Response.Status.OK).entity(playlistService.deleteTrack(playlistId, trackId)).build();
 		} catch (PlaylistException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}

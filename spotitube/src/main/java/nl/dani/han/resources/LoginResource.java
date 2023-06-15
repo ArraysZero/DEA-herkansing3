@@ -14,12 +14,13 @@ import nl.dani.han.services.LoginService;
 @Path("/login")
 public class LoginResource {
 
+	private LoginService loginService = new LoginService();
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(UserDTO user) {
 		try {
-			LoginService loginService = new LoginService();
 			var response = loginService.login(user);
 			return Response.status(Response.Status.OK).entity(response).build();
 		} catch (LoginException e) {
