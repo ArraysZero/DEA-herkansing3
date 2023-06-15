@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.dani.han.dtos.TrackDTO;
+import nl.dani.han.dtos.TrackListDTO;
 
 public class TrackDAO {
-	public List<TrackDTO> getAllTracks() {
+	public TrackListDTO getAllTracks() { // TODO implement
 		ArrayList<TrackDTO> tracks = new ArrayList<>();
 		tracks.add(new TrackDTO(1, "cant be touched", "Roy Jones", 400, "unknown", 1, "unknows", "hip hop", false));
-		return tracks;
+		return new TrackListDTO(tracks);
 	}
 
 	public TrackDTO getTrackId(int id) {
