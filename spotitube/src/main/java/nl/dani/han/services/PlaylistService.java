@@ -3,6 +3,7 @@ package nl.dani.han.services;
 import nl.dani.han.daos.PlaylistDAO;
 import nl.dani.han.dtos.PlayListDTO;
 import nl.dani.han.dtos.PlayListListDTO;
+import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.PlaylistException;
 
@@ -27,6 +28,10 @@ public class PlaylistService {
 	}
 
 	public TrackListDTO getTrackList(int id) throws PlaylistException { // TODO implement
+		return playlistDAO.getTracks(id);
+	}
+
+	public TrackListDTO addTrack(int id, TrackDTO track) throws PlaylistException { // TODO implement
 		return playlistDAO.getTracks(id);
 	}
 }

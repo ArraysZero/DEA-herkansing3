@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import nl.dani.han.daos.PlaylistDAO;
 import nl.dani.han.dtos.PlayListDTO;
 import nl.dani.han.dtos.PlayListListDTO;
+import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.exceptions.PlaylistException;
 import nl.dani.han.services.PlaylistService;
 
@@ -71,6 +72,18 @@ public class PlaylistResource {
 	public Response getTrackListPlaylistId(@PathParam("id") Integer id) {
 		try {
 			return Response.status(Response.Status.OK).entity(playlistService.getTrackList(id)).build();
+		} catch (PlaylistException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		}
+	}
+
+	@POST
+	@Path("/{id}/tracks")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addTrackPlaylistId(@PathParam("id") Integer id, TrackDTO track) {
+		try {
+			return Response.status(Response.Status.OK).entity(playlistService.addTrack(id, track)).build();
 		} catch (PlaylistException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
