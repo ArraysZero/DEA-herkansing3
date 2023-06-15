@@ -18,4 +18,22 @@ public class TrackDAO {
 
 		// TODO implement
 	}
+
+	public TrackListDTO compareLists(TrackListDTO base, TrackListDTO compared) {
+		ArrayList<TrackDTO> tracks = new ArrayList<>();
+		for (int i = base.getTracks().size() - 1; i >= 0; i--) {
+			boolean inCompared = false;
+			for (int n = 0; n < compared.getTracks().size(); n++) {
+				if (base.getTracks().get(i).equals(compared.getTracks().get(n))) {
+					inCompared = true;
+					break;
+				}
+			}
+			if (!inCompared) {
+				tracks.add(base.getTracks().get(i));
+			}
+		}
+
+		return new TrackListDTO(tracks);
+	}
 }
