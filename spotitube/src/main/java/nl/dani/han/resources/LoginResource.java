@@ -1,5 +1,6 @@
 package nl.dani.han.resources;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,7 +15,8 @@ import nl.dani.han.services.LoginService;
 @Path("/login")
 public class LoginResource {
 
-	private LoginService loginService = new LoginService();
+	@Inject
+	private LoginService loginService;
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

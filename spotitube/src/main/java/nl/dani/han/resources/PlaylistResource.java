@@ -1,5 +1,6 @@
 package nl.dani.han.resources;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,14 +21,14 @@ import nl.dani.han.services.PlaylistService;
 
 @Path("/playlists")
 public class PlaylistResource {
-	private PlaylistService playlistService = new PlaylistService();
+	@Inject
+	private PlaylistService playlistService;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllPlaylists() {
 		try {
-			var playlists = playlistService.getAllPlaylists();
-			return Response.status(Response.Status.OK).entity(playlists).build();
+			return Response.status(Response.Status.OK).entity(playlistService.getAllPlaylists()).build();
 		} catch (PlaylistException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
