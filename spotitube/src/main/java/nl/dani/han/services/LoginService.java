@@ -1,5 +1,7 @@
 package nl.dani.han.services;
 
+import javax.inject.Inject;
+
 import nl.dani.han.daos.LoginDAO;
 import nl.dani.han.dtos.LoginDTO;
 import nl.dani.han.dtos.UserDTO;
@@ -7,7 +9,8 @@ import nl.dani.han.exceptions.LoginException;
 
 public class LoginService {
 
-	private LoginDAO loginDAO = new LoginDAO();
+	@Inject
+	private LoginDAO loginDAO;
 
 	public LoginDTO login(UserDTO user) throws LoginException {
 		if (user.equals(loginDAO.getUser(user))) {

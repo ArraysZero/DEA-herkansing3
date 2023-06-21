@@ -34,7 +34,7 @@ public class LoginResourceTest {
 	}
 
 	@AfterEach
-	public void clsoe() {
+	public void shut() {
 		// nog niets
 	}
 

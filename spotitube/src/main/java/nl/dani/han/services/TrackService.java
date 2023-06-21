@@ -1,5 +1,7 @@
 package nl.dani.han.services;
 
+import javax.inject.Inject;
+
 import nl.dani.han.daos.PlaylistDAO;
 import nl.dani.han.daos.TrackDAO;
 import nl.dani.han.dtos.TrackListDTO;
@@ -8,8 +10,11 @@ import nl.dani.han.exceptions.TrackException;
 
 public class TrackService {
 
-	private PlaylistDAO playlistDAO = new PlaylistDAO();
-	private TrackDAO trackDAO = new TrackDAO();
+	@Inject
+	private PlaylistDAO playlistDAO;
+
+	@Inject
+	private TrackDAO trackDAO;
 
 	public TrackListDTO getAvailableTracks(int playlistId) throws TrackException {
 
@@ -18,7 +23,6 @@ public class TrackService {
 			var allTracks = trackDAO.getAllTracks();
 			return trackDAO.compareLists(allTracks, playlistTracks);
 		} catch (PlaylistException e) {
-			// TODO Auto-generated catch block
 			throw new TrackException(e.getCause());
 		}
 	}
