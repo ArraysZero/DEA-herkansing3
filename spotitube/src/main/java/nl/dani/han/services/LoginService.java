@@ -11,23 +11,31 @@ public class LoginService {
 
 	public LoginDTO login(UserDTO user) throws LoginException {
 		if (user.equals(loginDAO.getUser(user))) {
-			return new LoginDTO(generateToken(), user.getUser());
+			return new LoginDTO(generateToken(user.getUser()), user.getUser());
 		} else {
-			throw new LoginException("login failed");
+			throw new LoginException("username or password incorrect");
 		}
 	}
 
-	private String generateToken() {
-		String token = (int) (Math.random() * 10000) + "-"
-				+ (int) (Math.random() * 10000) + "-"
-				+ (int) (Math.random() * 10000)
-				+ "-" + (int) (Math.random() * 10000);
+	private String generateToken(String user) throws LoginException {
+		String token;
+		do {
+			token = (int) (Math.random() * 10000) + "-"
+					+ (int) (Math.random() * 10000) + "-"
+					+ (int) (Math.random() * 10000)
+					+ "-" + (int) (Math.random() * 10000);
+		} while (tokenExists(token));
 
-		// TODO add token to existing tokens
+		loginDAO.addToken(user, token);
+
 		return token;
 	}
 
-	public boolean tokenExists(String token) {
-		return true; // TODO implement
+	public boolean tokenExists(String token) throws LoginException {
+		if (loginDAO.getUserToken(token) != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

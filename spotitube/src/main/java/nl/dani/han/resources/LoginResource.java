@@ -27,7 +27,6 @@ public class LoginResource {
 			return Response.status(Response.Status.OK).entity(response).build();
 		} catch (LoginException e) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getCause()).build();
-
 		}
 	}
 }
