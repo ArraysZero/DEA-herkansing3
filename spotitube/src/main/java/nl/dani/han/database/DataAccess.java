@@ -13,21 +13,27 @@ public class DataAccess {
 	private String user;
 	private String passwd;
 
-	public DataAccess() {
-		Properties prop = new Properties();
-		try {
-			prop.load(App.class.getClassLoader().getResourceAsStream("database.properties"));
-			URL = prop.getProperty("url");
-			user = prop.getProperty("user");
-			passwd = prop.getProperty("pass");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	// public DataAccess() {
+	// Properties prop = new Properties();
+	// try {
+	// prop.load(App.class.getClassLoader().getResourceAsStream("database.properties"));
+	// URL = prop.getProperty("url");
+	// user = prop.getProperty("user");
+	// passwd = prop.getProperty("pass");
+	// } catch (IOException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// }
 
-	public Connection connect() throws SQLException {
+	public static Connection connect() throws SQLException, IOException {
+		Properties prop = new Properties();
+		prop.load(App.class.getClassLoader().getResourceAsStream("database.properties"));
+		String URL = prop.getProperty("url");
+		String user = prop.getProperty("user");
+		String passwd = prop.getProperty("pass");
 		return DriverManager.getConnection(URL);
+
 	}
 
 }

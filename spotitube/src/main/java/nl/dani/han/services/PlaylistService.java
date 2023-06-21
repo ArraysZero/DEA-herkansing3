@@ -15,7 +15,8 @@ public class PlaylistService {
 		return playlistDAO.getAllPlaylists();
 	}
 
-	public PlayListListDTO deletePlaylist(int id) throws PlaylistException { // TODO: implement
+	public PlayListListDTO deletePlaylist(int id) throws PlaylistException {
+		playlistDAO.deletePlaylist(id);
 		return playlistDAO.getAllPlaylists();
 	}
 
