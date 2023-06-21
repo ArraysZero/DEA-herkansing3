@@ -19,6 +19,13 @@ public class TrackDAO {
 		// TODO implement
 	}
 
+	/**
+	 * returns all the tracks present in base but not in compared
+	 * 
+	 * @param base     the track list that is compared against
+	 * @param compared the track list with which is compared
+	 * @return tracks present in base but not in compared
+	 */
 	public TrackListDTO compareLists(TrackListDTO base, TrackListDTO compared) {
 		ArrayList<TrackDTO> tracks = new ArrayList<>();
 		for (int i = base.getTracks().size() - 1; i >= 0; i--) {

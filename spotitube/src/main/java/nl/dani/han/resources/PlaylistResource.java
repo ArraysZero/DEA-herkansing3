@@ -61,7 +61,7 @@ public class PlaylistResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response editPlaylist(@PathParam("id") Integer id, PlayListDTO playlist) {
 		try {
-			return Response.status(Response.Status.OK).entity(playlistService.editPlaylist(id, playlist)).build();
+			return Response.status(Response.Status.OK).entity(playlistService.editPlaylist(playlist)).build();
 		} catch (PlaylistException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}

@@ -88,4 +88,65 @@ public class PlaylistDAO {
 			throw new PlaylistException(e.getCause());
 		}
 	}
+
+	public void addPlaylist(PlayListDTO playList) throws PlaylistException {
+		try (Connection connection = DataAccess.connect()) {
+			PlayListListDTO resultList = new PlayListListDTO();
+			resultList.setPlaylists(new ArrayList<>());
+			String sql = "INSERT INTO playlist (id, name, owner) VALUES (?, ?, ?)";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, playList.getId());
+			stmt.setString(2, playList.getName());
+			stmt.setString(3, "owner");
+			stmt.executeQuery();
+
+			for (int i = 0; i < playList.getTracks().getTracks().size(); i++) {
+				addTrackToPlaylist(playList.getId(), playList.getTracks().getTracks().get(i).getId());
+			}
+		} catch (SQLException | IOException e) {
+			throw new PlaylistException(e.getCause());
+		}
+	}
+
+	public void addTrackToPlaylist(int playlist, int track) throws PlaylistException {
+		try (Connection connection = DataAccess.connect()) {
+			PlayListListDTO resultList = new PlayListListDTO();
+			resultList.setPlaylists(new ArrayList<>());
+			String sql = "INSERT INTO trackOnPlaylist (playlist, id) VALUES (?, ?)";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, playlist);
+			stmt.setInt(2, track);
+			stmt.executeQuery();
+		} catch (SQLException | IOException e) {
+			throw new PlaylistException(e.getCause());
+		}
+	}
+
+	public void changePlaylistName(int playlist, String name) throws PlaylistException {
+		try (Connection connection = DataAccess.connect()) {
+			PlayListListDTO resultList = new PlayListListDTO();
+			resultList.setPlaylists(new ArrayList<>());
+			String sql = "UPDATE playlist SET name = ? WHERE id = ?";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(2, playlist);
+			stmt.setString(2, name);
+			stmt.executeQuery();
+		} catch (SQLException | IOException e) {
+			throw new PlaylistException(e.getCause());
+		}
+	}
+
+	public void deleteTrackFromPlaylist(int playlist, int track) throws PlaylistException {
+		try (Connection connection = DataAccess.connect()) {
+			PlayListListDTO resultList = new PlayListListDTO();
+			resultList.setPlaylists(new ArrayList<>());
+			String sql = "DELETE FROM trackOnPlaylist WHERE playlist = ? AND track = ?";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, playlist);
+			stmt.setInt(2, track);
+			stmt.executeQuery();
+		} catch (SQLException | IOException e) {
+			throw new PlaylistException(e.getCause());
+		}
+	}
 }
