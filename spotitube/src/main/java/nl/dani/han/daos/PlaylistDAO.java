@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import nl.dani.han.database.DataAccess;
 import nl.dani.han.dtos.PlayListDTO;
 import nl.dani.han.dtos.PlayListListDTO;
@@ -16,7 +18,9 @@ import nl.dani.han.dtos.UserDTO;
 import nl.dani.han.exceptions.PlaylistException;
 
 public class PlaylistDAO {
-	TrackDAO trackDAO = new TrackDAO();
+
+	@Inject
+	TrackDAO trackDAO;
 
 	public PlayListListDTO getAllPlaylists() throws PlaylistException {
 
