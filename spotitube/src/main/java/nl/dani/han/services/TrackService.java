@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import nl.dani.han.daos.PlaylistDAO;
 import nl.dani.han.daos.TrackDAO;
 import nl.dani.han.dtos.TrackListDTO;
+import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.PlaylistException;
 import nl.dani.han.exceptions.TrackException;
 
@@ -16,7 +17,7 @@ public class TrackService {
 	@Inject
 	private TrackDAO trackDAO;
 
-	public TrackListDTO getAvailableTracks(int playlistId) throws TrackException {
+	public TrackListDTO getAvailableTracks(int playlistId) throws TrackException, DataAccessException {
 
 		try {
 			var playlistTracks = playlistDAO.getTracks(playlistId);

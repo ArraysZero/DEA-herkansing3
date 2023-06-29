@@ -15,6 +15,7 @@ import nl.dani.han.dtos.PlayListListDTO;
 import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.dtos.UserDTO;
+import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.PlaylistException;
 
 public class PlaylistDAO {
@@ -22,7 +23,7 @@ public class PlaylistDAO {
 	@Inject
 	TrackDAO trackDAO;
 
-	public PlayListListDTO getAllPlaylists() throws PlaylistException {
+	public PlayListListDTO getAllPlaylists() throws PlaylistException, DataAccessException {
 
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
@@ -37,11 +38,11 @@ public class PlaylistDAO {
 			}
 			return resultList;
 		} catch (SQLException | IOException e) {
-			throw new PlaylistException(e.getCause());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 
-	public PlayListDTO getPlaylistId(int id) throws PlaylistException {
+	public PlayListDTO getPlaylistId(int id) throws PlaylistException, DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -56,11 +57,11 @@ public class PlaylistDAO {
 			}
 			// return resultList;
 		} catch (SQLException | IOException e) {
-			throw new PlaylistException(e.getCause());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 
-	public TrackListDTO getTracks(int id) throws PlaylistException {
+	public TrackListDTO getTracks(int id) throws PlaylistException, DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			var resultList = new TrackListDTO();
 			resultList.setTracks(new ArrayList<>());
@@ -76,11 +77,11 @@ public class PlaylistDAO {
 			}
 			return resultList;
 		} catch (SQLException | IOException e) {
-			throw new PlaylistException(e.getCause());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 
-	public void deletePlaylist(int id) throws PlaylistException {
+	public void deletePlaylist(int id) throws PlaylistException, DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -89,11 +90,11 @@ public class PlaylistDAO {
 			stmt.setInt(1, id);
 			stmt.executeQuery();
 		} catch (SQLException | IOException e) {
-			throw new PlaylistException(e.getCause());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 
-	public void addPlaylist(PlayListDTO playList) throws PlaylistException {
+	public void addPlaylist(PlayListDTO playList) throws PlaylistException, DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -108,11 +109,11 @@ public class PlaylistDAO {
 				addTrackToPlaylist(playList.getId(), playList.getTracks().getTracks().get(i).getId());
 			}
 		} catch (SQLException | IOException e) {
-			throw new PlaylistException(e.getCause());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 
-	public void addTrackToPlaylist(int playlist, int track) throws PlaylistException {
+	public void addTrackToPlaylist(int playlist, int track) throws PlaylistException, DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -122,11 +123,11 @@ public class PlaylistDAO {
 			stmt.setInt(2, track);
 			stmt.executeQuery();
 		} catch (SQLException | IOException e) {
-			throw new PlaylistException(e.getCause());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 
-	public void changePlaylistName(int playlist, String name) throws PlaylistException {
+	public void changePlaylistName(int playlist, String name) throws PlaylistException, DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -136,11 +137,11 @@ public class PlaylistDAO {
 			stmt.setString(2, name);
 			stmt.executeQuery();
 		} catch (SQLException | IOException e) {
-			throw new PlaylistException(e.getCause());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 
-	public void deleteTrackFromPlaylist(int playlist, int track) throws PlaylistException {
+	public void deleteTrackFromPlaylist(int playlist, int track) throws PlaylistException, DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -150,7 +151,7 @@ public class PlaylistDAO {
 			stmt.setInt(2, track);
 			stmt.executeQuery();
 		} catch (SQLException | IOException e) {
-			throw new PlaylistException(e.getCause());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 }

@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import nl.dani.han.dtos.TrackListDTO;
+import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.LoginException;
 import nl.dani.han.exceptions.TrackException;
 import nl.dani.han.services.LoginService;
@@ -47,7 +48,7 @@ public class TrackResourceTest {
 	}
 
 	@Test
-	public void getAvailableTracksTestSucceeds() throws TrackException, LoginException {
+	public void getAvailableTracksTestSucceeds() throws TrackException, LoginException, DataAccessException {
 		// arrange
 		TrackListDTO expected = mock(TrackListDTO.class);
 		when(mockLoginService.tokenExists(MOCKTOKEN)).thenReturn(true);

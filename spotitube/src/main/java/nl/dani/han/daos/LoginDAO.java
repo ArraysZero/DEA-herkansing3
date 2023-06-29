@@ -6,11 +6,12 @@ import java.sql.SQLException;
 
 import nl.dani.han.database.DataAccess;
 import nl.dani.han.dtos.UserDTO;
+import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.LoginException;
 
 public class LoginDAO {
 
-	public UserDTO getUser(UserDTO user) throws LoginException {
+	public UserDTO getUser(UserDTO user) throws LoginException, DataAccessException {
 		try (var connection = DataAccess.connect()) {
 			String sql = "SELECT * FROM user WHERE name = ? AND password = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -23,11 +24,11 @@ public class LoginDAO {
 				throw new LoginException("username or password incorrect");
 			}
 		} catch (SQLException | IOException e) {
-			throw new LoginException(e.getCause());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 
-	public UserDTO getUserToken(String token) throws LoginException {
+	public UserDTO getUserToken(String token) throws LoginException, DataAccessException {
 		try (var connection = DataAccess.connect()) {
 			String sql = "SELECT * FROM user WHERE token = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -39,11 +40,11 @@ public class LoginDAO {
 				return null;
 			}
 		} catch (SQLException | IOException e) {
-			throw new LoginException(e.getMessage());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 
-	public void addToken(String user, String token) throws LoginException {
+	public void addToken(String user, String token) throws LoginException, DataAccessException {
 		try (var connection = DataAccess.connect()) {
 			String sql = "UPDATE user SET token = ? WHERE user = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -51,7 +52,7 @@ public class LoginDAO {
 			stmt.setString(1, user);
 			stmt.executeQuery();
 		} catch (SQLException | IOException e) {
-			throw new LoginException(e.getCause());
+			throw new DataAccessException(e.getMessage());
 		}
 	}
 }

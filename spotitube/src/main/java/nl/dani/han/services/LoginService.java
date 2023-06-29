@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import nl.dani.han.daos.LoginDAO;
 import nl.dani.han.dtos.LoginDTO;
 import nl.dani.han.dtos.UserDTO;
+import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.LoginException;
 
 public class LoginService {
@@ -12,7 +13,7 @@ public class LoginService {
 	@Inject
 	private LoginDAO loginDAO;
 
-	public LoginDTO login(UserDTO user) throws LoginException {
+	public LoginDTO login(UserDTO user) throws LoginException, DataAccessException {
 		if (user.equals(loginDAO.getUser(user))) {
 			return new LoginDTO(generateToken(user.getUser()), user.getUser());
 		} else {
@@ -20,7 +21,7 @@ public class LoginService {
 		}
 	}
 
-	private String generateToken(String user) throws LoginException {
+	private String generateToken(String user) throws LoginException, DataAccessException {
 		String token;
 		do {
 			token = (int) (Math.random() * 10000) + "-"
@@ -34,11 +35,15 @@ public class LoginService {
 		return token;
 	}
 
-	public boolean tokenExists(String token) throws LoginException {
+	public boolean tokenExists(String token) throws LoginException, DataAccessException {
 		if (loginDAO.getUserToken(token) != null) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public void setLoginDAO(LoginDAO loginDAO) {
+		this.loginDAO = loginDAO;
 	}
 }

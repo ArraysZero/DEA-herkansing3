@@ -29,10 +29,17 @@ public class DataAccess {
 	public static Connection connect() throws SQLException, IOException {
 		Properties prop = new Properties();
 		prop.load(App.class.getClassLoader().getResourceAsStream("database.properties"));
-		String URL = prop.getProperty("url");
+		String URL = prop.getProperty("jdbc.url");
 		String user = prop.getProperty("user");
 		String passwd = prop.getProperty("pass");
-		return DriverManager.getConnection(URL);
+		try {
+			Class.forName("org.h2.Driver");
+			return DriverManager.getConnection(URL);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 
 	}
 

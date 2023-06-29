@@ -1,22 +1,74 @@
 package nl.dani.han.daos;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.dani.han.database.DataAccess;
+import nl.dani.han.dtos.PlayListListDTO;
 import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.dtos.TrackListDTO;
+import nl.dani.han.exceptions.DataAccessException;
+import nl.dani.han.exceptions.TrackException;
 
 public class TrackDAO {
-	public TrackListDTO getAllTracks() { // TODO implement
-		ArrayList<TrackDTO> tracks = new ArrayList<>();
-		tracks.add(new TrackDTO(1, "cant be touched", "Roy Jones", 400, "unknown", 1, "unknows", "hip hop", false));
-		return new TrackListDTO(tracks);
+	public TrackListDTO getAllTracks() throws DataAccessException {
+		try (Connection connection = DataAccess.connect()) {
+			PlayListListDTO resultList = new PlayListListDTO();
+			resultList.setPlaylists(new ArrayList<>());
+			String sql = "SELECT * FROM Track";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			var result = stmt.executeQuery();
+
+			TrackListDTO trackList = new TrackListDTO();
+			while (result.next()) {
+				trackList.getTracks().add(new TrackDTO(result.getInt("id"),
+						result.getString("title"),
+						result.getString("performer"),
+						result.getInt("duration"),
+						result.getString("album"),
+						result.getInt("playcount"),
+						result.getString("publicationDate"),
+						result.getString("description"),
+						result.getBoolean("offlineAvailable")));
+			}
+			return trackList;
+		} catch (SQLException | IOException e) {
+			throw new DataAccessException(e.getMessage());
+		}
 	}
 
-	public TrackDTO getTrackId(int id) {
-		return new TrackDTO(id, "cant be touched", "Roy Jones", 400, "unknown", 1, "unknows", "hip hop", false); // TODO
+	public TrackDTO getTrackId(int id) throws TrackException, DataAccessException {
+		try (Connection connection = DataAccess.connect()) {
+			PlayListListDTO resultList = new PlayListListDTO();
+			resultList.setPlaylists(new ArrayList<>());
+			String sql = "SELECT * FROM Track";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			var result = stmt.executeQuery();
 
-		// TODO implement
+			TrackDTO track = null;
+			while (result.next()) {
+				track = new TrackDTO(result.getInt("id"),
+						result.getString("title"),
+						result.getString("performer"),
+						result.getInt("duration"),
+						result.getString("album"),
+						result.getInt("playcount"),
+						result.getString("publicationDate"),
+						result.getString("description"),
+						result.getBoolean("offlineAvailable"));
+			}
+			if (track != null) {
+				return track;
+			} else {
+				throw new TrackException("track id does not exist");
+			}
+		} catch (SQLException | IOException e) {
+			throw new DataAccessException(e.getMessage());
+		}
 	}
 
 	/**

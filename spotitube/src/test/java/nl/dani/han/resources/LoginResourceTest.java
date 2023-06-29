@@ -12,6 +12,7 @@ import org.mockito.Mock;
 
 import nl.dani.han.dtos.LoginDTO;
 import nl.dani.han.dtos.UserDTO;
+import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.LoginException;
 import nl.dani.han.services.LoginService;
 
@@ -40,7 +41,7 @@ public class LoginResourceTest {
 	}
 
 	@Test
-	public void loginSucceedsTest() throws LoginException {
+	public void loginSucceedsTest() throws LoginException, DataAccessException {
 		// arrange
 		UserDTO mockUser = new UserDTO(TESTUSER, TESTPASS);
 		LoginDTO expected = new LoginDTO(TESTTOKEN, TESTUSER);

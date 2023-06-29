@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import nl.dani.han.dtos.UserDTO;
+import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.LoginException;
 import nl.dani.han.services.LoginService;
 
@@ -21,7 +22,7 @@ public class LoginResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response login(UserDTO user) throws LoginException {
+	public Response login(UserDTO user) throws LoginException, DataAccessException {
 		var response = loginService.login(user);
 		return Response.status(Response.Status.OK).entity(response).build();
 	}

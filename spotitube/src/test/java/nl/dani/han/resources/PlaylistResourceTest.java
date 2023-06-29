@@ -13,6 +13,7 @@ import nl.dani.han.dtos.PlayListDTO;
 import nl.dani.han.dtos.PlayListListDTO;
 import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.dtos.TrackListDTO;
+import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.LoginException;
 import nl.dani.han.exceptions.PlaylistException;
 import nl.dani.han.services.LoginService;
@@ -55,7 +56,7 @@ public class PlaylistResourceTest {
 	}
 
 	@Test
-	public void getAllPlaylistsTestSucceeds() throws PlaylistException, LoginException {
+	public void getAllPlaylistsTestSucceeds() throws PlaylistException, LoginException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
 		when(mockPlaylistService.getAllPlaylists()).thenReturn(mockPlayListList);
@@ -69,7 +70,7 @@ public class PlaylistResourceTest {
 	}
 
 	@Test
-	public void deletePlaylistTestSucceeds() throws LoginException, PlaylistException {
+	public void deletePlaylistTestSucceeds() throws LoginException, PlaylistException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
 		when(mockPlaylistService.deletePlaylist(mockId)).thenReturn(mockPlayListList);
@@ -83,7 +84,7 @@ public class PlaylistResourceTest {
 	}
 
 	@Test
-	public void addPlaylistTestSucceeds() throws LoginException, PlaylistException {
+	public void addPlaylistTestSucceeds() throws LoginException, PlaylistException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
 		when(mockPlaylistService.addPlaylist(mockPlayListDTO)).thenReturn(mockPlayListList);
@@ -97,7 +98,7 @@ public class PlaylistResourceTest {
 	}
 
 	@Test 
-	public void editPlaylistTestSucceeds() throws PlaylistException, LoginException {
+	public void editPlaylistTestSucceeds() throws PlaylistException, LoginException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
 		when(mockPlaylistService.editPlaylist(mockPlayListDTO)).thenReturn(mockPlayListList);
@@ -111,7 +112,7 @@ public class PlaylistResourceTest {
 	}
 
 	@Test 
-	public void getTrackListPlaylistIdTestSucceeds() throws LoginException, PlaylistException {
+	public void getTrackListPlaylistIdTestSucceeds() throws LoginException, PlaylistException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
 		when(mockPlaylistService.getTrackList(mockId)).thenReturn(mockTrackListDTO);
@@ -125,7 +126,7 @@ public class PlaylistResourceTest {
 	}
 
 	@Test
-	public void addTrackPlaylistIdTestSucceeds() throws LoginException, PlaylistException {
+	public void addTrackPlaylistIdTestSucceeds() throws LoginException, PlaylistException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
 		when(mockPlaylistService.addTrack(mockId, mockTrackDTO)).thenReturn(mockTrackListDTO);
@@ -139,7 +140,7 @@ public class PlaylistResourceTest {
 	}
 
 	@Test
-	public void deleteTrackPlaylistIdTestSucceeds() throws LoginException, PlaylistException {
+	public void deleteTrackPlaylistIdTestSucceeds() throws LoginException, PlaylistException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
 		when(mockPlaylistService.deleteTrack(mockId, mockId)).thenReturn(mockTrackListDTO);
