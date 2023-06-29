@@ -1,7 +1,9 @@
 package nl.dani.han.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -21,8 +23,9 @@ import nl.dani.han.exceptions.LoginException;
 public class LoginServiceTest {
 
 	// mocks
-	UserDTO mockUser;
-	LoginDTO mockLogin;
+	private final String MOCK_TOKEN = "1234-1234-1234-1234";
+	private UserDTO mockUser;
+	private LoginDTO mockLogin;
 
 	@Mock
 	LoginDAO mockLoginDAO;
@@ -71,10 +74,24 @@ public class LoginServiceTest {
 	@Test
 	public void tokenExistsTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
+		when(mockLoginDAO.getUserToken(MOCK_TOKEN)).thenReturn(mockUser);
 
 		// act
-		var actual = sut.tokenExists("");
+		var actual = sut.tokenExists(MOCK_TOKEN);
 
 		// assert
+		assertTrue(actual);
+	}
+
+	@Test
+	public void tokenExistsTestFails() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginDAO.getUserToken(MOCK_TOKEN)).thenReturn(null);
+
+		// act
+		var actual = sut.tokenExists(MOCK_TOKEN);
+
+		// assert
+		assertFalse(actual);
 	}
 }

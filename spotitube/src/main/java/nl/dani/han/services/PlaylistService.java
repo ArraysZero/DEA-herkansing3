@@ -51,4 +51,12 @@ public class PlaylistService {
 		playlistDAO.deleteTrackFromPlaylist(playlist, track);
 		return playlistDAO.getTracks(playlist);
 	}
+
+	public void setPlaylistDAO(PlaylistDAO playlistDAO) {
+		this.playlistDAO = playlistDAO;
+	}
+
+	public void setTrackDAO(TrackDAO trackDAO) {
+		this.trackDAO = trackDAO;
+	}
 }

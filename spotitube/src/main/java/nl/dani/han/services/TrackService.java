@@ -27,4 +27,12 @@ public class TrackService {
 			throw new TrackException(e.getCause());
 		}
 	}
+
+	public void setPlaylistDAO(PlaylistDAO playlistDAO) {
+		this.playlistDAO = playlistDAO;
+	}
+
+	public void setTrackDAO(TrackDAO trackDAO) {
+		this.trackDAO = trackDAO;
+	}
 }
