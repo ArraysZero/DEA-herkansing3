@@ -12,25 +12,33 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import nl.dani.han.dtos.TrackListDTO;
+import nl.dani.han.exceptions.LoginException;
 import nl.dani.han.exceptions.TrackException;
+import nl.dani.han.services.LoginService;
 import nl.dani.han.services.TrackService;
 
 public class TrackResourceTest {
 
+	private final String MOCKTOKEN = "mock-token";
+
 	@Mock
 	private TrackService mockTrackService;
+
+	@Mock
+	private LoginService mockLoginService;
 
 	@InjectMocks
 	private TrackResource sut;
 
 	@BeforeEach
 	public void setup() {
-		System.out.println("setup test");
 		mockTrackService = mock(TrackService.class);
+		mockLoginService = mock(LoginService.class);
 
-		System.out.println(mockTrackService);
 		sut = new TrackResource();
-		System.out.println(sut.getTrackService());
+
+		sut.setTrackService(mockTrackService);
+		sut.setAuthentication(mockLoginService);
 	}
 
 	@AfterEach
@@ -39,30 +47,17 @@ public class TrackResourceTest {
 	}
 
 	@Test
-	public void getAvailableTracksTestSucceeds() throws TrackException {
+	public void getAvailableTracksTestSucceeds() throws TrackException, LoginException {
 		// arrange
 		TrackListDTO expected = mock(TrackListDTO.class);
+		when(mockLoginService.tokenExists(MOCKTOKEN)).thenReturn(true);
 		when(mockTrackService.getAvailableTracks(anyInt())).thenReturn(expected);
 
 		// act
-		// var actual = sut.getAvailableTracks();
+		var actual = sut.getAvailableTracks(MOCKTOKEN);
 
 		// assert
-		// assertEquals(200, actual.getStatus());
-		// assertEquals(expected, actual.getEntity());
-	}
-
-	@Test
-	public void getAvailableTracksTestFails() throws TrackException {
-		// arrange
-		var expected = mock(TrackException.class);
-		when(mockTrackService.getAvailableTracks(anyInt())).thenThrow(expected);
-
-		// act
-		// var actual = sut.getAvailableTracks();
-
-		// assert
-		// assertEquals(200, actual.getStatus());
-		// assertEquals(expected, actual.getEntity());
+		assertEquals(200, actual.getStatus());
+		assertEquals(expected, actual.getEntity());
 	}
 }
