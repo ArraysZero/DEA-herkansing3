@@ -9,6 +9,6 @@ public class HealthResource {
 
 	@GET
 	public Response healthCheck() {
-		return Response.status(Response.Status.OK).entity("we up all day").build();
+		return Response.status(Response.Status.OK).entity("up and running").build();
 	}
 }

@@ -9,6 +9,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -16,7 +17,9 @@ import nl.dani.han.daos.PlaylistDAO;
 import nl.dani.han.dtos.PlayListDTO;
 import nl.dani.han.dtos.PlayListListDTO;
 import nl.dani.han.dtos.TrackDTO;
+import nl.dani.han.exceptions.LoginException;
 import nl.dani.han.exceptions.PlaylistException;
+import nl.dani.han.services.LoginService;
 import nl.dani.han.services.PlaylistService;
 
 @Path("/playlists")
@@ -24,34 +27,39 @@ public class PlaylistResource {
 	@Inject
 	private PlaylistService playlistService;
 
+	@Inject
+	private LoginService authentication;
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllPlaylists() {
-		try {
+	public Response getAllPlaylists(@QueryParam("token") String token) throws LoginException, PlaylistException {
+		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.getAllPlaylists()).build();
-		} catch (PlaylistException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		} else {
+			throw new LoginException("token does not exist");
 		}
 	}
 
 	@DELETE
 	@Path("/{id}")
-	public Response deletePlaylist(@PathParam("id") Integer id) { // TODO functie het laten doen
-		try {
+	public Response deletePlaylist(@QueryParam("token") String token, @PathParam("id") Integer id)
+			throws LoginException, PlaylistException {
+		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.deletePlaylist(id)).build();
-		} catch (PlaylistException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		} else {
+			throw new LoginException("token does not exist");
 		}
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addPlaylist(PlayListDTO playlist) {
-		try {
+	public Response addPlaylist(@QueryParam("token") String token, PlayListDTO playlist)
+			throws LoginException, PlaylistException {
+		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.addPlaylist(playlist)).build();
-		} catch (PlaylistException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		} else {
+			throw new LoginException("token does not exist");
 		}
 	}
 
@@ -59,22 +67,24 @@ public class PlaylistResource {
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response editPlaylist(@PathParam("id") Integer id, PlayListDTO playlist) {
-		try {
+	public Response editPlaylist(@QueryParam("token") String token, @PathParam("id") Integer id, PlayListDTO playlist)
+			throws PlaylistException, LoginException {
+		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.editPlaylist(playlist)).build();
-		} catch (PlaylistException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		} else {
+			throw new LoginException("token does not exist");
 		}
 	}
 
 	@GET
 	@Path("/{id}/tracks")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getTrackListPlaylistId(@PathParam("id") Integer id) {
-		try {
+	public Response getTrackListPlaylistId(@QueryParam("token") String token, @PathParam("id") Integer id)
+			throws LoginException, PlaylistException {
+		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.getTrackList(id)).build();
-		} catch (PlaylistException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		} else {
+			throw new LoginException("token does not exist");
 		}
 	}
 
@@ -82,23 +92,33 @@ public class PlaylistResource {
 	@Path("/{id}/tracks")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addTrackPlaylistId(@PathParam("id") Integer id, TrackDTO track) {
-		try {
+	public Response addTrackPlaylistId(@QueryParam("token") String token, @PathParam("id") Integer id, TrackDTO track)
+			throws LoginException, PlaylistException {
+		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.addTrack(id, track)).build();
-		} catch (PlaylistException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		} else {
+			throw new LoginException("token does not exist");
 		}
 	}
 
 	@DELETE
 	@Path("{id}/tracks/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteTrackPlaylistId(@PathParam("id") Integer playlistId, @PathParam("id") Integer trackId) {
-		try {
+	public Response deleteTrackPlaylistId(@QueryParam("token") String token, @PathParam("id") Integer playlistId,
+			@PathParam("id") Integer trackId) throws LoginException, PlaylistException {
+		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.deleteTrack(playlistId, trackId)).build();
-		} catch (PlaylistException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		} else {
+			throw new LoginException("token does not exist");
 		}
+	}
+
+	public void setPlaylistService(PlaylistService playlistService) {
+		this.playlistService = playlistService;
+	}
+
+	public void setAuthentication(LoginService authentication) {
+		this.authentication = authentication;
 	}
 
 }

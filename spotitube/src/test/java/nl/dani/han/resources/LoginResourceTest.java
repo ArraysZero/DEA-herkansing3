@@ -31,6 +31,7 @@ public class LoginResourceTest {
 	public void setup() {
 		mockLoginService = mock(LoginService.class);
 		sut = new LoginResource();
+		sut.setLoginService(mockLoginService);
 	}
 
 	@AfterEach
@@ -46,26 +47,10 @@ public class LoginResourceTest {
 		when(mockLoginService.login(mockUser)).thenReturn(expected);
 
 		// act
-		// var actual = sut.login(mockUser);
+		var actual = sut.login(mockUser);
 
 		// assert
-		// assertEquals(200, actual.getStatus());
-		// assertEquals(expected, actual.getEntity());
-	}
-
-	@Test
-	public void loginFailsTest() throws LoginException {
-		// arrange
-		var mockUser = mock(UserDTO.class);
-		var expected = mock(LoginException.class);
-
-		when(mockLoginService.login(mockUser)).thenThrow(expected);
-
-		// act
-		// var actual = sut.login(mockUser);
-
-		// assert
-		// assertEquals(500, actual.getStatus());
-		// assertEquals(expected.getMessage(), actual.getEntity());
+		assertEquals(200, actual.getStatus());
+		assertEquals(expected, actual.getEntity());
 	}
 }

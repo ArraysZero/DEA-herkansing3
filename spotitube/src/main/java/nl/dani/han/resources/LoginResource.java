@@ -21,12 +21,13 @@ public class LoginResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response login(UserDTO user) {
-		try {
-			var response = loginService.login(user);
-			return Response.status(Response.Status.OK).entity(response).build();
-		} catch (LoginException e) {
-			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getCause()).build();
-		}
+	public Response login(UserDTO user) throws LoginException {
+		var response = loginService.login(user);
+		return Response.status(Response.Status.OK).entity(response).build();
 	}
+
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
+	}
+
 }

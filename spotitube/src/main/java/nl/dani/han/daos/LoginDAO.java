@@ -39,7 +39,7 @@ public class LoginDAO {
 				return null;
 			}
 		} catch (SQLException | IOException e) {
-			throw new LoginException(e.getCause());
+			throw new LoginException(e.getMessage());
 		}
 	}
 
