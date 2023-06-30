@@ -207,3 +207,908 @@ CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
 2023-06-30 13:38:51 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM [*]user WHERE name = ? AND password = ?"; expected "identifier"; SQL statement:
 SELECT * FROM user WHERE name = ? AND password = ? [42001-214]
+2023-06-30 13:40:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+2023-06-30 13:40:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+2023-06-30 13:40:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+2023-06-30 13:40:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:40:49 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:800)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeBatchElement(JdbcStatement.java:842)
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:794)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:42:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+2023-06-30 13:42:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+2023-06-30 13:42:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+2023-06-30 13:42:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:42:49 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:800)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeBatchElement(JdbcStatement.java:842)
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:794)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:46:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+2023-06-30 13:46:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+2023-06-30 13:46:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+2023-06-30 13:46:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:46:00 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:800)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeBatchElement(JdbcStatement.java:842)
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:794)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:47:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+2023-06-30 13:47:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+2023-06-30 13:47:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+2023-06-30 13:47:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:47:10 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:800)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeBatchElement(JdbcStatement.java:842)
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:794)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:48:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+2023-06-30 13:48:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+2023-06-30 13:48:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+2023-06-30 13:48:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:48:51 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:800)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeBatchElement(JdbcStatement.java:842)
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:794)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:50:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+2023-06-30 13:50:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+2023-06-30 13:50:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+2023-06-30 13:50:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:50:11 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:800)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeBatchElement(JdbcStatement.java:842)
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:794)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:50:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Method is only allowed for a query. Use execute or executeUpdate instead of executeQuery; SQL statement:
+UPDATE users SET token = ? WHERE user = ? [90002-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.Prepared.query(Prepared.java:256)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:251)
+	at org.h2.command.Command.executeQuery(Command.java:190)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:128)
+	at nl.dani.han.daos.LoginDAO.addToken(LoginDAO.java:53)
+	at nl.dani.han.services.LoginService.generateToken(LoginService.java:34)
+	at nl.dani.han.services.LoginService.login(LoginService.java:19)
+	at nl.dani.han.resources.LoginResource.login(LoginResource.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.apache.openejb.server.cxf.rs.PojoInvoker.performInvocation(PojoInvoker.java:43)
+	at org.apache.cxf.service.invoker.AbstractInvoker.invoke(AbstractInvoker.java:96)
+	at org.apache.cxf.jaxrs.JAXRSInvoker.invoke(JAXRSInvoker.java:201)
+	at org.apache.cxf.jaxrs.JAXRSInvoker.invoke(JAXRSInvoker.java:104)
+	at org.apache.openejb.server.cxf.rs.AutoJAXRSInvoker.invoke(AutoJAXRSInvoker.java:68)
+	at org.apache.cxf.interceptor.ServiceInvokerInterceptor$1.run(ServiceInvokerInterceptor.java:59)
+	at org.apache.cxf.interceptor.ServiceInvokerInterceptor.handleMessage(ServiceInvokerInterceptor.java:96)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121)
+	at org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:265)
+	at org.apache.openejb.server.cxf.rs.CxfRsHttpListener.doInvoke(CxfRsHttpListener.java:266)
+	at org.apache.tomee.webservices.CXFJAXRSFilter.doFilter(CXFJAXRSFilter.java:99)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.openejb.server.httpd.EEFilter.doFilter(EEFilter.java:67)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.tomee.catalina.OpenEJBValve.invoke(OpenEJBValve.java:45)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.tomee.catalina.OpenEJBSecurityListener$RequestCapturer.invoke(OpenEJBSecurityListener.java:97)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:687)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-06-30 13:50:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+2023-06-30 13:50:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+2023-06-30 13:50:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+2023-06-30 13:50:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:50:52 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:800)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeBatchElement(JdbcStatement.java:842)
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:794)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:52:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+2023-06-30 13:52:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+2023-06-30 13:52:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+2023-06-30 13:52:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:52:03 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:800)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeBatchElement(JdbcStatement.java:842)
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:794)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:52:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+2023-06-30 13:52:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+2023-06-30 13:52:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+2023-06-30 13:52:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]
+2023-06-30 13:52:13 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:800)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(name VARCHAR(20), password VARCHAR(20), token VARCHAR(20)) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeBatchElement(JdbcStatement.java:842)
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:794)
+	at nl.dani.han.startup.CustomContextListener.createBatch(CustomContextListener.java:61)
+	at nl.dani.han.startup.CustomContextListener.contextInitialized(CustomContextListener.java:27)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4764)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5222)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1023)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1910)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:824)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1666)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:314)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1159)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" already exists; SQL statement:
+CREATE TABLE track (id INT, title VARCHAR(20), performer VARCHAR(20), duration INT, album VARCHAR(20), playcount INT, publicationDate VARCHAR(20), description VARCHAR(20), offlineAvailable BOOLEAN) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" already exists; SQL statement:
+CREATE TABLE playlist (id INT, name VARCHAR(20), owner VARCHAR(20)) [42101-214]
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" already exists; SQL statement:
+CREATE TABLE trackOnPlaylist (trackId INT, playlistId INT) [42101-214]

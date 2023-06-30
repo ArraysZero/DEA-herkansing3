@@ -14,7 +14,7 @@ public class LoginService {
 	private LoginDAO loginDAO;
 
 	public LoginDTO login(UserDTO user) throws LoginException, DataAccessException {
-		if (user.equals(loginDAO.getUser(user))) {
+		if (loginDAO.getUser(user) != null) {
 			return new LoginDTO(generateToken(user.getUser()), user.getUser());
 		} else {
 			throw new LoginException("username or password incorrect");

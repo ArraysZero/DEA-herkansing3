@@ -13,7 +13,7 @@ public class LoginDAO {
 
 	public UserDTO getUser(UserDTO user) throws DataAccessException {
 		try (var connection = DataAccess.connect()) {
-			String sql = "SELECT * FROM user WHERE name = ? AND password = ?";
+			String sql = "SELECT * FROM users WHERE name = ? AND password = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, user.getUser());
 			stmt.setString(2, user.getPassword());
@@ -30,7 +30,7 @@ public class LoginDAO {
 
 	public UserDTO getUserToken(String token) throws DataAccessException {
 		try (var connection = DataAccess.connect()) {
-			String sql = "SELECT * FROM user WHERE token = ?";
+			String sql = "SELECT * FROM users WHERE token = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, token);
 			var result = stmt.executeQuery();
@@ -46,11 +46,11 @@ public class LoginDAO {
 
 	public void addToken(String user, String token) throws LoginException, DataAccessException {
 		try (var connection = DataAccess.connect()) {
-			String sql = "UPDATE user SET token = ? WHERE user = ?";
+			String sql = "UPDATE users SET token = ? WHERE user = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, token);
-			stmt.setString(1, user);
-			stmt.executeQuery();
+			stmt.setString(2, user);
+			stmt.execute();
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}
