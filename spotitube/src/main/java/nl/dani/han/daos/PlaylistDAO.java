@@ -65,15 +65,13 @@ public class PlaylistDAO {
 		try (Connection connection = DataAccess.connect()) {
 			var resultList = new TrackListDTO();
 			resultList.setTracks(new ArrayList<>());
-			String sql = "SELECT * FROM trackOnPlaylist WHERE playlist = ?";
+			String sql = "SELECT * FROM trackOnPlaylist WHERE playlistid = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, id);
 			var result = stmt.executeQuery();
 			while (result.next()) {
 				resultList.getTracks()
-						.add(new TrackDTO(result.getInt("id"), result.getString("title"), result.getString("performer"),
-								result.getInt("duration"), result.getString("album"), result.getInt("playcount"),
-								result.getString("plucationDate"),
-								result.getString("description"), result.getBoolean("offline")));
+						.add(trackDAO.getTrackId(result.getInt("trackid")));
 			}
 			return resultList;
 		} catch (SQLException | IOException e) {
