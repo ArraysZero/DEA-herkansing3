@@ -11,7 +11,7 @@ import nl.dani.han.exceptions.LoginException;
 
 public class LoginDAO {
 
-	public UserDTO getUser(UserDTO user) throws LoginException, DataAccessException {
+	public UserDTO getUser(UserDTO user) throws DataAccessException {
 		try (var connection = DataAccess.connect()) {
 			String sql = "SELECT * FROM user WHERE name = ? AND password = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -21,14 +21,14 @@ public class LoginDAO {
 			if (result.next()) {
 				return new UserDTO(result.getNString("name"), result.getNString("password"));
 			} else {
-				throw new LoginException("username or password incorrect");
+				return null;
 			}
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}
 	}
 
-	public UserDTO getUserToken(String token) throws LoginException, DataAccessException {
+	public UserDTO getUserToken(String token) throws DataAccessException {
 		try (var connection = DataAccess.connect()) {
 			String sql = "SELECT * FROM user WHERE token = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);

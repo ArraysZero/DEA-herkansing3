@@ -41,7 +41,7 @@ public class TrackDAO {
 		}
 	}
 
-	public TrackDTO getTrackId(int id) throws TrackException, DataAccessException {
+	public TrackDTO getTrackId(int id) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -61,11 +61,7 @@ public class TrackDAO {
 						result.getString("description"),
 						result.getBoolean("offlineAvailable"));
 			}
-			if (track != null) {
-				return track;
-			} else {
-				throw new TrackException("track id does not exist");
-			}
+			return track;
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}

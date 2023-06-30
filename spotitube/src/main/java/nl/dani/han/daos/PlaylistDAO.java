@@ -53,7 +53,7 @@ public class PlaylistDAO {
 			if (result.next()) {
 				return new PlayListDTO(id, result.getString("name"), false, getTracks(id));
 			} else {
-				throw new PlaylistException("playlist does not exist");
+				return null;
 			}
 			// return resultList;
 		} catch (SQLException | IOException e) {
