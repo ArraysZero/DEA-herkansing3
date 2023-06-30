@@ -104,10 +104,11 @@ public class PlaylistResource {
 	}
 
 	@DELETE
-	@Path("{id}/tracks/{id}")
+	@Path("{playlistid}/tracks/{trackid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteTrackPlaylistId(@QueryParam("token") String token, @PathParam("id") Integer playlistId,
-			@PathParam("id") Integer trackId) throws LoginException, PlaylistException, DataAccessException {
+	public Response deleteTrackPlaylistId(@QueryParam("token") String token,
+			@PathParam("playlistid") Integer playlistId,
+			@PathParam("trackid") Integer trackId) throws LoginException, PlaylistException, DataAccessException {
 		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.deleteTrack(playlistId, trackId)).build();
 		} else {

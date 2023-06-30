@@ -22,10 +22,10 @@ public class TrackResource {
 	LoginService authentication;
 
 	@GET
-	public Response getAvailableTracks(@QueryParam("token") String token)
+	public Response getAvailableTracks(@QueryParam("token") String token, @QueryParam("forPlaylist") int playlist)
 			throws LoginException, TrackException, DataAccessException {
 		if (authentication.tokenExists(token)) {
-			return Response.status(Response.Status.OK).entity(trackService.getAvailableTracks(0)).build();
+			return Response.status(Response.Status.OK).entity(trackService.getAvailableTracks(playlist)).build();
 		} else {
 			throw new LoginException("token does not exist");
 		}

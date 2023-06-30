@@ -55,7 +55,7 @@ public class TrackResourceTest {
 		when(mockTrackService.getAvailableTracks(anyInt())).thenReturn(expected);
 
 		// act
-		var actual = sut.getAvailableTracks(MOCKTOKEN);
+		var actual = sut.getAvailableTracks(MOCKTOKEN, 0);
 
 		// assert
 		assertEquals(200, actual.getStatus());

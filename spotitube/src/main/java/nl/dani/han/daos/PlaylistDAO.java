@@ -115,7 +115,7 @@ public class PlaylistDAO {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
-			String sql = "INSERT INTO trackOnPlaylist (playlist, id) VALUES (?, ?)";
+			String sql = "INSERT INTO trackOnPlaylist (playlistid, trackid) VALUES (?, ?)";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, playlist);
 			stmt.setInt(2, track);
@@ -143,7 +143,7 @@ public class PlaylistDAO {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
-			String sql = "DELETE FROM trackOnPlaylist WHERE playlist = ? AND track = ?";
+			String sql = "DELETE FROM trackOnPlaylist WHERE playlistid = ? AND trackid = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, playlist);
 			stmt.setInt(2, track);

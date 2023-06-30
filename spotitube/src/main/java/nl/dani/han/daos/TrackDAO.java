@@ -23,7 +23,7 @@ public class TrackDAO {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			var result = stmt.executeQuery();
 
-			TrackListDTO trackList = new TrackListDTO();
+			TrackListDTO trackList = new TrackListDTO(new ArrayList<>());
 			while (result.next()) {
 				trackList.getTracks().add(new TrackDTO(result.getInt("id"),
 						result.getString("title"),
