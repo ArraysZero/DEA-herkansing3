@@ -61,3 +61,48 @@ SELECT * FROM Track [42104-214]
 2023-06-30 02:33:16 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" not found (this database is empty); SQL statement:
 SELECT * FROM Track [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" not found (this database is empty); SQL statement:
+SELECT * FROM Track [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" not found (this database is empty); SQL statement:
+SELECT * FROM Track [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACK" not found (this database is empty); SQL statement:
+SELECT * FROM Track [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM [*]user WHERE name = ? AND password = ?"; expected "identifier"; SQL statement:
+SELECT * FROM user WHERE name = ? AND password = ? [42001-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM [*]user WHERE name = ? AND password = ?"; expected "identifier"; SQL statement:
+SELECT * FROM user WHERE name = ? AND password = ? [42001-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM [*]user WHERE name = ? AND password = ?"; expected "identifier"; SQL statement:
+SELECT * FROM user WHERE name = ? AND password = ? [42001-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM [*]user WHERE name = ? AND password = ?"; expected "identifier"; SQL statement:
+SELECT * FROM user WHERE name = ? AND password = ? [42001-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" not found (this database is empty); SQL statement:
+UPDATE playlist SET name = ? WHERE id = ? [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" not found (this database is empty); SQL statement:
+INSERT INTO playlist (id, name, owner) VALUES (?, ?, ?) [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" not found (this database is empty); SQL statement:
+SELECT * FROM playlist WHERE id = ? [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" not found (this database is empty); SQL statement:
+SELECT * FROM trackOnPlaylist WHERE playlist = ? [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" not found (this database is empty); SQL statement:
+DELETE FROM playlist WHERE id = ? [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" not found (this database is empty); SQL statement:
+DELETE FROM trackOnPlaylist WHERE playlist = ? AND track = ? [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PLAYLIST" not found (this database is empty); SQL statement:
+SELECT * FROM playlist [42104-214]
+2023-06-30 13:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRACKONPLAYLIST" not found (this database is empty); SQL statement:
+INSERT INTO trackOnPlaylist (playlist, id) VALUES (?, ?) [42104-214]
