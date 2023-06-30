@@ -101,7 +101,7 @@ public class PlaylistDAO {
 			stmt.setInt(1, playList.getId());
 			stmt.setString(2, playList.getName());
 			stmt.setString(3, "owner");
-			stmt.executeQuery();
+			stmt.execute();
 
 			for (int i = 0; i < playList.getTracks().getTracks().size(); i++) {
 				addTrackToPlaylist(playList.getId(), playList.getTracks().getTracks().get(i).getId());
@@ -119,7 +119,7 @@ public class PlaylistDAO {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, playlist);
 			stmt.setInt(2, track);
-			stmt.executeQuery();
+			stmt.execute();
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}
@@ -132,8 +132,8 @@ public class PlaylistDAO {
 			String sql = "UPDATE playlist SET name = ? WHERE id = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(2, playlist);
-			stmt.setString(2, name);
-			stmt.executeQuery();
+			stmt.setString(1, name);
+			stmt.execute();
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}
@@ -147,7 +147,7 @@ public class PlaylistDAO {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, playlist);
 			stmt.setInt(2, track);
-			stmt.executeQuery();
+			stmt.execute();
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}
