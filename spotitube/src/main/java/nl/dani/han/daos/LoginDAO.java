@@ -46,7 +46,7 @@ public class LoginDAO {
 
 	public void addToken(String user, String token) throws LoginException, DataAccessException {
 		try (var connection = DataAccess.connect()) {
-			String sql = "UPDATE users SET token = ? WHERE user = ?";
+			String sql = "UPDATE users SET token = ? WHERE name = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, token);
 			stmt.setString(2, user);
