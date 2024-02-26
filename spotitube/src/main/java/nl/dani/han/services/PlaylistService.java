@@ -14,10 +14,10 @@ import nl.dani.han.exceptions.PlaylistException;
 public class PlaylistService {
 
 	@Inject
-	PlaylistDAO playlistDAO = new PlaylistDAO();
+	private PlaylistDAO playlistDAO = new PlaylistDAO();
 
 	@Inject
-	TrackDAO trackDAO = new TrackDAO();
+	private TrackDAO trackDAO = new TrackDAO();
 
 	public PlayListListDTO getAllPlaylists() throws PlaylistException, DataAccessException {
 		return playlistDAO.getAllPlaylists();

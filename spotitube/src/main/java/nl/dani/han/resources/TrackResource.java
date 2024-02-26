@@ -16,10 +16,10 @@ import nl.dani.han.services.TrackService;
 public class TrackResource {
 
 	@Inject
-	TrackService trackService;
+	private TrackService trackService;
 
 	@Inject
-	LoginService authentication;
+	private LoginService authentication;
 
 	@GET
 	public Response getAvailableTracks(@QueryParam("token") String token, @QueryParam("forPlaylist") int playlist)

@@ -21,7 +21,7 @@ import nl.dani.han.exceptions.PlaylistException;
 public class PlaylistDAO {
 
 	@Inject
-	TrackDAO trackDAO;
+	private TrackDAO trackDAO;
 
 	public PlayListListDTO getAllPlaylists() throws PlaylistException, DataAccessException {
 
