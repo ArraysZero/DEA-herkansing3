@@ -15,8 +15,7 @@ import nl.dani.han.daos.PlaylistDAO;
 import nl.dani.han.daos.TrackDAO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.DataAccessException;
-import nl.dani.han.exceptions.LoginException;
-import nl.dani.han.exceptions.PlaylistException;
+//import nl.dani.han.exceptions.PlaylistException;
 import nl.dani.han.exceptions.TrackException;
 
 public class TrackServiceTest {
@@ -24,7 +23,7 @@ public class TrackServiceTest {
 	// mocks
 	private final int MOCK_ID = 0;
 	private TrackListDTO mockTrackList;
-	private PlaylistException mockException;
+//	private PlaylistException mockException;
 
 	@Mock
 	PlaylistDAO mockPlaylistDAO;
@@ -45,7 +44,7 @@ public class TrackServiceTest {
 		sut.setTrackDAO(mockTrackDAO);
 
 		mockTrackList = mock(TrackListDTO.class);
-		mockException = mock(PlaylistException.class);
+//		mockException = mock(PlaylistException.class);
 	}
 
 	@AfterEach
@@ -54,10 +53,10 @@ public class TrackServiceTest {
 	}
 
 	@Test
-	public void getAvailableTracksTestSucceeds() throws TrackException, DataAccessException, PlaylistException {
+	public void getAvailableTracksTestSucceeds() throws TrackException, DataAccessException {
 		// arrange
 		when(mockPlaylistDAO.getTracks(MOCK_ID)).thenReturn(mockTrackList);
-		when(mockTrackDAO.getAllTracks()).thenReturn(mockTrackList);
+		when(mockTrackDAO.getAll()).thenReturn(mockTrackList);
 		when(mockTrackDAO.compareLists(mockTrackList, mockTrackList)).thenReturn(mockTrackList);
 
 		// act
@@ -65,14 +64,5 @@ public class TrackServiceTest {
 
 		// assert
 		assertEquals(mockTrackList, actual);
-	}
-
-	@Test
-	public void getAvailableTracksTestTrackExeption() throws TrackException, DataAccessException, PlaylistException {
-		// arrange
-		when(mockPlaylistDAO.getTracks(MOCK_ID)).thenThrow(mockException);
-		
-		Exception exception = assertThrows(TrackException.class, ()
-				-> sut.getAvailableTracks(MOCK_ID));
 	}
 }

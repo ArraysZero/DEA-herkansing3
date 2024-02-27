@@ -19,7 +19,7 @@ import nl.dani.han.dtos.PlayListListDTO;
 import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.LoginException;
-import nl.dani.han.exceptions.PlaylistException;
+//import nl.dani.han.exceptions.PlaylistException;
 import nl.dani.han.services.LoginService;
 import nl.dani.han.services.PlaylistService;
 
@@ -34,7 +34,7 @@ public class PlaylistResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllPlaylists(@QueryParam("token") String token)
-			throws LoginException, PlaylistException, DataAccessException {
+			throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.getAllPlaylists()).build();
 		} else {
@@ -45,7 +45,7 @@ public class PlaylistResource {
 	@DELETE
 	@Path("/{id}")
 	public Response deletePlaylist(@QueryParam("token") String token, @PathParam("id") Integer id)
-			throws LoginException, PlaylistException, DataAccessException {
+			throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.deletePlaylist(id)).build();
 		} else {
@@ -57,7 +57,7 @@ public class PlaylistResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addPlaylist(@QueryParam("token") String token, PlayListDTO playlist)
-			throws LoginException, PlaylistException, DataAccessException {
+			throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.addPlaylist(playlist)).build();
 		} else {
@@ -70,7 +70,7 @@ public class PlaylistResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response editPlaylist(@QueryParam("token") String token, @PathParam("id") Integer id, PlayListDTO playlist)
-			throws PlaylistException, LoginException, DataAccessException {
+			throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.editPlaylist(playlist)).build();
 		} else {
@@ -82,7 +82,7 @@ public class PlaylistResource {
 	@Path("/{id}/tracks")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getTrackListPlaylistId(@QueryParam("token") String token, @PathParam("id") Integer id)
-			throws LoginException, PlaylistException, DataAccessException {
+			throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.getTrackList(id)).build();
 		} else {
@@ -95,7 +95,7 @@ public class PlaylistResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addTrackPlaylistId(@QueryParam("token") String token, @PathParam("id") Integer id, TrackDTO track)
-			throws LoginException, PlaylistException, DataAccessException {
+			throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.addTrack(id, track)).build();
 		} else {
@@ -108,7 +108,7 @@ public class PlaylistResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteTrackPlaylistId(@QueryParam("token") String token,
 			@PathParam("playlistid") Integer playlistId,
-			@PathParam("trackid") Integer trackId) throws LoginException, PlaylistException, DataAccessException {
+			@PathParam("trackid") Integer trackId) throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
 			return Response.status(Response.Status.OK).entity(playlistService.deleteTrack(playlistId, trackId)).build();
 		} else {

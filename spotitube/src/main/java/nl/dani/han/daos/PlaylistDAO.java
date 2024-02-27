@@ -5,25 +5,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import nl.dani.han.database.DataAccess;
-import nl.dani.han.dtos.PlayListDTO;
-import nl.dani.han.dtos.PlayListListDTO;
-import nl.dani.han.dtos.TrackDTO;
-import nl.dani.han.dtos.TrackListDTO;
-import nl.dani.han.dtos.UserDTO;
+import nl.dani.han.dtos.*;
 import nl.dani.han.exceptions.DataAccessException;
-import nl.dani.han.exceptions.PlaylistException;
+//import nl.dani.han.exceptions.PlaylistException;
 
-public class PlaylistDAO {
+public class PlaylistDAO implements DataAccessObject{
 
 	@Inject
 	private TrackDAO trackDAO;
 
-	public PlayListListDTO getAllPlaylists() throws PlaylistException, DataAccessException {
+	@Override
+	public PlayListListDTO getAll() throws DataAccessException {
 
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
@@ -42,7 +38,8 @@ public class PlaylistDAO {
 		}
 	}
 
-	public PlayListDTO getPlaylistId(int id) throws PlaylistException, DataAccessException {
+	@Override
+	public PlayListDTO getById(int id) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -61,7 +58,7 @@ public class PlaylistDAO {
 		}
 	}
 
-	public TrackListDTO getTracks(int id) throws PlaylistException, DataAccessException {
+	public TrackListDTO getTracks(int id) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			var resultList = new TrackListDTO();
 			resultList.setTracks(new ArrayList<>());
@@ -71,7 +68,7 @@ public class PlaylistDAO {
 			var result = stmt.executeQuery();
 			while (result.next()) {
 				resultList.getTracks()
-						.add(trackDAO.getTrackId(result.getInt("trackid")));
+						.add(trackDAO.getById(result.getInt("trackid")));
 			}
 			return resultList;
 		} catch (SQLException | IOException e) {
@@ -79,7 +76,8 @@ public class PlaylistDAO {
 		}
 	}
 
-	public void deletePlaylist(int id) throws PlaylistException, DataAccessException {
+	@Override
+	public void deleteById(int id) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -92,7 +90,7 @@ public class PlaylistDAO {
 		}
 	}
 
-	public void addPlaylist(PlayListDTO playList) throws PlaylistException, DataAccessException {
+	public void addPlaylist(PlayListDTO playList) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -111,7 +109,7 @@ public class PlaylistDAO {
 		}
 	}
 
-	public void addTrackToPlaylist(int playlist, int track) throws PlaylistException, DataAccessException {
+	public void addTrackToPlaylist(int playlist, int track) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -125,7 +123,7 @@ public class PlaylistDAO {
 		}
 	}
 
-	public void changePlaylistName(int playlist, String name) throws PlaylistException, DataAccessException {
+	public void changePlaylistName(int playlist, String name) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -139,7 +137,7 @@ public class PlaylistDAO {
 		}
 	}
 
-	public void deleteTrackFromPlaylist(int playlist, int track) throws PlaylistException, DataAccessException {
+	public void deleteTrackFromPlaylist(int playlist, int track) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());

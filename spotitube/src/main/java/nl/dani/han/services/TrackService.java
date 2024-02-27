@@ -6,8 +6,8 @@ import nl.dani.han.daos.PlaylistDAO;
 import nl.dani.han.daos.TrackDAO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.DataAccessException;
-import nl.dani.han.exceptions.PlaylistException;
-import nl.dani.han.exceptions.TrackException;
+//import nl.dani.han.exceptions.PlaylistException;
+
 
 public class TrackService {
 
@@ -17,15 +17,11 @@ public class TrackService {
 	@Inject
 	private TrackDAO trackDAO;
 
-	public TrackListDTO getAvailableTracks(int playlistId) throws TrackException, DataAccessException {
+	public TrackListDTO getAvailableTracks(int playlistId) throws DataAccessException {
 
-		try {
-			var playlistTracks = playlistDAO.getTracks(playlistId);
-			var allTracks = trackDAO.getAllTracks();
-			return trackDAO.compareLists(allTracks, playlistTracks);
-		} catch (PlaylistException e) {
-			throw new TrackException(e.getCause());
-		}
+		var playlistTracks = playlistDAO.getTracks(playlistId);
+		var allTracks = trackDAO.getAll();
+		return trackDAO.compareLists(allTracks, playlistTracks);
 	}
 
 	public void setPlaylistDAO(PlaylistDAO playlistDAO) {

@@ -18,7 +18,7 @@ import nl.dani.han.dtos.PlayListListDTO;
 import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.DataAccessException;
-import nl.dani.han.exceptions.PlaylistException;
+//import nl.dani.han.exceptions.PlaylistException;
 
 public class PlaylistServiceTest {
 
@@ -59,9 +59,9 @@ public class PlaylistServiceTest {
 	}
 
 	@Test
-	public void getAllPlaylistsTest() throws PlaylistException, DataAccessException {
+	public void getAllPlaylistsTest() throws DataAccessException {
 		// arrange
-		when(mockPlaylistDAO.getAllPlaylists()).thenReturn(mockPlayListList);
+		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
 
 		// act
 		var actual = sut.getAllPlaylists();
@@ -71,9 +71,9 @@ public class PlaylistServiceTest {
 	}
 
 	@Test
-	public void deletePlaylistTest() throws PlaylistException, DataAccessException {
+	public void deletePlaylistTest() throws DataAccessException {
 		// arrange
-		when(mockPlaylistDAO.getAllPlaylists()).thenReturn(mockPlayListList);
+		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
 
 		// act
 		var actual = sut.deletePlaylist(MOCK_ID);
@@ -83,9 +83,9 @@ public class PlaylistServiceTest {
 	}
 
 	@Test
-	public void addPlaylistTest() throws PlaylistException, DataAccessException {
+	public void addPlaylistTest() throws DataAccessException {
 		// arrange
-		when(mockPlaylistDAO.getAllPlaylists()).thenReturn(mockPlayListList);
+		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
 
 		// act
 		var actual = sut.addPlaylist(mockPlayList);
@@ -95,9 +95,9 @@ public class PlaylistServiceTest {
 	}
 
 	@Test
-	public void editPlaylistTest() throws PlaylistException, DataAccessException {
+	public void editPlaylistTest() throws DataAccessException {
 		// arrange
-		when(mockPlaylistDAO.getAllPlaylists()).thenReturn(mockPlayListList);
+		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
 
 		// act
 		var actual = sut.editPlaylist(mockPlayList);
@@ -107,7 +107,7 @@ public class PlaylistServiceTest {
 	}
 
 	@Test
-	public void getTrackListTest() throws PlaylistException, DataAccessException {
+	public void getTrackListTest() throws DataAccessException {
 		// arrange
 		when(mockPlaylistDAO.getTracks(anyInt())).thenReturn(mockTrackList);
 
@@ -119,7 +119,7 @@ public class PlaylistServiceTest {
 	}
 
 	@Test
-	public void addTrackTest() throws PlaylistException, DataAccessException {
+	public void addTrackTest() throws DataAccessException {
 		// arrange
 		when(mockPlaylistDAO.getTracks(anyInt())).thenReturn(mockTrackList);
 
@@ -131,7 +131,7 @@ public class PlaylistServiceTest {
 	}
 
 	@Test
-	public void deleteTrackTest() throws PlaylistException, DataAccessException {
+	public void deleteTrackTest() throws DataAccessException {
 		// arrange
 		when(mockPlaylistDAO.getTracks(anyInt())).thenReturn(mockTrackList);
 

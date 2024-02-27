@@ -5,17 +5,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import nl.dani.han.database.DataAccess;
 import nl.dani.han.dtos.PlayListListDTO;
 import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.DataAccessException;
-import nl.dani.han.exceptions.TrackException;
 
-public class TrackDAO {
-	public TrackListDTO getAllTracks() throws DataAccessException {
+public class TrackDAO implements DataAccessObject {
+
+	@Override
+	public TrackListDTO getAll() throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -41,12 +41,14 @@ public class TrackDAO {
 		}
 	}
 
-	public TrackDTO getTrackId(int id) throws DataAccessException {
+	@Override
+	public TrackDTO getById(int id) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
-			String sql = "SELECT * FROM Track";
+			String sql = "SELECT * FROM Track WHERE id = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, id);
 			var result = stmt.executeQuery();
 
 			TrackDTO track = null;
@@ -62,6 +64,20 @@ public class TrackDAO {
 						result.getBoolean("offlineAvailable"));
 			}
 			return track;
+		} catch (SQLException | IOException e) {
+			throw new DataAccessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void deleteById(int id) throws DataAccessException {
+		try (Connection connection = DataAccess.connect()) {
+			PlayListListDTO resultList = new PlayListListDTO();
+			resultList.setPlaylists(new ArrayList<>());
+			String sql = "DELETE FROM track WHERE id = ?";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.execute();
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}
