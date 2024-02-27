@@ -90,7 +90,7 @@ public class PlaylistDAO implements DataAccessObject{
 		}
 	}
 
-	public void addPlaylist(PlayListDTO playList) throws DataAccessException {
+	public void addPlaylist(PlayListDTO playList, String owner) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -98,7 +98,7 @@ public class PlaylistDAO implements DataAccessObject{
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, playList.getId());
 			stmt.setString(2, playList.getName());
-			stmt.setString(3, "owner");
+			stmt.setString(3, owner);
 			stmt.execute();
 
 		} catch (SQLException | IOException e) {

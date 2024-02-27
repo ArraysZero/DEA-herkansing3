@@ -34,7 +34,7 @@ public class PlaylistService {
 	}
 
 	public PlayListListDTO addPlaylist(String token, PlayListDTO playlist) throws DataAccessException {
-		playlistDAO.addPlaylist(playlist);
+		playlistDAO.addPlaylist(playlist, loginDAO.getUserToken(token).getUser());
 		return setOwnerForPlaylistList(token, playlistDAO.getAll());
 	}
 
