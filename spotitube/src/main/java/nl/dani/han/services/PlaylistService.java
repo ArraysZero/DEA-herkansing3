@@ -34,6 +34,7 @@ public class PlaylistService {
 	}
 
 	public PlayListListDTO addPlaylist(String token, PlayListDTO playlist) throws DataAccessException {
+		playlist.setId(genId());
 		playlistDAO.addPlaylist(playlist, loginDAO.getUserToken(token).getUser());
 		return setOwnerForPlaylistList(token, playlistDAO.getAll());
 	}
@@ -79,5 +80,14 @@ public class PlaylistService {
 		}
 
 		return playList;
+	}
+
+	private int genId() throws DataAccessException {
+		int id;
+		do {
+			id= (int) (Math.random() * 10000);
+		} while (playlistDAO.getById(id) != null);
+
+		return id;
 	}
 }
