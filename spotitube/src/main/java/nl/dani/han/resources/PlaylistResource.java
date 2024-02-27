@@ -36,7 +36,7 @@ public class PlaylistResource {
 	public Response getAllPlaylists(@QueryParam("token") String token)
 			throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
-			return Response.status(Response.Status.OK).entity(playlistService.getAllPlaylists()).build();
+			return Response.status(Response.Status.OK).entity(playlistService.getAllPlaylists(token)).build();
 		} else {
 			throw new LoginException("token does not exist");
 		}

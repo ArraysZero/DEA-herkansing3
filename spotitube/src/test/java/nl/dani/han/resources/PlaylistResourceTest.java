@@ -59,7 +59,7 @@ public class PlaylistResourceTest {
 	public void getAllPlaylistsTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
-		when(mockPlaylistService.getAllPlaylists()).thenReturn(mockPlayListList);
+		when(mockPlaylistService.getAllPlaylists(mockToken)).thenReturn(mockPlayListList);
 
 		// act
 		var actual = sut.getAllPlaylists(mockToken);

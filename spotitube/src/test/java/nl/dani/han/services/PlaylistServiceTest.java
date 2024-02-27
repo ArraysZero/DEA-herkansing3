@@ -24,6 +24,7 @@ public class PlaylistServiceTest {
 
 	// mocks
 	private final int MOCK_ID = 0;
+	private final String MOCK_TOKEN = "MOCK-TOKEN";
 	private TrackDTO mockTrack;
 	private TrackListDTO mockTrackList;
 	private PlayListDTO mockPlayList;
@@ -64,7 +65,7 @@ public class PlaylistServiceTest {
 		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
 
 		// act
-		var actual = sut.getAllPlaylists();
+		var actual = sut.getAllPlaylists(MOCK_TOKEN);
 
 		// assert
 		assertEquals(mockPlayListList, actual);

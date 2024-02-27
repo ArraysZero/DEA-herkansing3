@@ -150,4 +150,23 @@ public class PlaylistDAO implements DataAccessObject{
 			throw new DataAccessException(e.getMessage());
 		}
 	}
+
+	public String getOwner(int id) throws DataAccessException {
+		try (Connection connection = DataAccess.connect()) {
+			PlayListListDTO resultList = new PlayListListDTO();
+			resultList.setPlaylists(new ArrayList<>());
+			String sql = "SELECT * FROM playlist WHERE id = ?";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, id);
+			var result = stmt.executeQuery();
+			if (result.next()) {
+				return result.getString("owner");
+			} else {
+				return null;
+			}
+			// return resultList;
+		} catch (SQLException | IOException e) {
+			throw new DataAccessException(e.getMessage());
+		}
+	}
 }
