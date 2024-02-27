@@ -47,7 +47,7 @@ public class PlaylistResource {
 	public Response deletePlaylist(@QueryParam("token") String token, @PathParam("id") Integer id)
 			throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
-			return Response.status(Response.Status.OK).entity(playlistService.deletePlaylist(id)).build();
+			return Response.status(Response.Status.OK).entity(playlistService.deletePlaylist(token, id)).build();
 		} else {
 			throw new LoginException("token does not exist");
 		}
@@ -59,7 +59,7 @@ public class PlaylistResource {
 	public Response addPlaylist(@QueryParam("token") String token, PlayListDTO playlist)
 			throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
-			return Response.status(Response.Status.OK).entity(playlistService.addPlaylist(playlist)).build();
+			return Response.status(Response.Status.OK).entity(playlistService.addPlaylist(token, playlist)).build();
 		} else {
 			throw new LoginException("token does not exist");
 		}
@@ -72,7 +72,7 @@ public class PlaylistResource {
 	public Response editPlaylist(@QueryParam("token") String token, @PathParam("id") Integer id, PlayListDTO playlist)
 			throws LoginException, DataAccessException {
 		if (authentication.tokenExists(token)) {
-			return Response.status(Response.Status.OK).entity(playlistService.editPlaylist(playlist)).build();
+			return Response.status(Response.Status.OK).entity(playlistService.editPlaylist(token, playlist)).build();
 		} else {
 			throw new LoginException("token does not exist");
 		}

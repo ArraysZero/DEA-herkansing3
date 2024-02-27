@@ -77,7 +77,7 @@ public class PlaylistServiceTest {
 		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
 
 		// act
-		var actual = sut.deletePlaylist(MOCK_ID);
+		var actual = sut.deletePlaylist(MOCK_TOKEN, MOCK_ID);
 
 		// assert
 		assertEquals(mockPlayListList, actual);
@@ -89,7 +89,7 @@ public class PlaylistServiceTest {
 		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
 
 		// act
-		var actual = sut.addPlaylist(mockPlayList);
+		var actual = sut.addPlaylist(MOCK_TOKEN, mockPlayList);
 
 		// assert
 		assertEquals(mockPlayListList, actual);
@@ -101,7 +101,7 @@ public class PlaylistServiceTest {
 		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
 
 		// act
-		var actual = sut.editPlaylist(mockPlayList);
+		var actual = sut.editPlaylist(MOCK_TOKEN, mockPlayList);
 
 		// assert
 		assertEquals(mockPlayListList, actual);

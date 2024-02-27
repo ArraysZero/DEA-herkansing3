@@ -101,9 +101,6 @@ public class PlaylistDAO implements DataAccessObject{
 			stmt.setString(3, "owner");
 			stmt.execute();
 
-			for (int i = 0; i < playList.getTracks().getTracks().size(); i++) {
-				addTrackToPlaylist(playList.getId(), playList.getTracks().getTracks().get(i).getId());
-			}
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}

@@ -21,7 +21,7 @@ import nl.dani.han.services.PlaylistService;
 
 public class PlaylistResourceTest {
 
-	private final String mockToken = "MOCK-TOKEN";
+	private final String MOCK_TOKEN = "MOCK-TOKEN";
 	private final int mockId = 1;
 	private PlayListListDTO mockPlayListList;
 	private LoginException mockLoginException;
@@ -58,11 +58,11 @@ public class PlaylistResourceTest {
 	@Test
 	public void getAllPlaylistsTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
-		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
-		when(mockPlaylistService.getAllPlaylists(mockToken)).thenReturn(mockPlayListList);
+		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
+		when(mockPlaylistService.getAllPlaylists(MOCK_TOKEN)).thenReturn(mockPlayListList);
 
 		// act
-		var actual = sut.getAllPlaylists(mockToken);
+		var actual = sut.getAllPlaylists(MOCK_TOKEN);
 
 		// assert
 		assertEquals(200, actual.getStatus());
@@ -72,11 +72,11 @@ public class PlaylistResourceTest {
 	@Test
 	public void deletePlaylistTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
-		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
-		when(mockPlaylistService.deletePlaylist(mockId)).thenReturn(mockPlayListList);
+		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
+		when(mockPlaylistService.deletePlaylist(MOCK_TOKEN, mockId)).thenReturn(mockPlayListList);
 
 		// act
-		var actual = sut.deletePlaylist(mockToken, mockId);
+		var actual = sut.deletePlaylist(MOCK_TOKEN, mockId);
 
 		// assert
 		assertEquals(200, actual.getStatus());
@@ -86,11 +86,11 @@ public class PlaylistResourceTest {
 	@Test
 	public void addPlaylistTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
-		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
-		when(mockPlaylistService.addPlaylist(mockPlayListDTO)).thenReturn(mockPlayListList);
+		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
+		when(mockPlaylistService.addPlaylist(MOCK_TOKEN, mockPlayListDTO)).thenReturn(mockPlayListList);
 
 		// act
-		var actual = sut.addPlaylist(mockToken, mockPlayListDTO);
+		var actual = sut.addPlaylist(MOCK_TOKEN, mockPlayListDTO);
 
 		// assert
 		assertEquals(200, actual.getStatus());
@@ -100,11 +100,11 @@ public class PlaylistResourceTest {
 	@Test 
 	public void editPlaylistTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
-		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
-		when(mockPlaylistService.editPlaylist(mockPlayListDTO)).thenReturn(mockPlayListList);
+		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
+		when(mockPlaylistService.editPlaylist(MOCK_TOKEN, mockPlayListDTO)).thenReturn(mockPlayListList);
 
 		// act
-		var actual = sut.editPlaylist(mockToken, mockId, mockPlayListDTO);
+		var actual = sut.editPlaylist(MOCK_TOKEN, mockId, mockPlayListDTO);
 
 		// assert
 		assertEquals(200, actual.getStatus());
@@ -114,11 +114,11 @@ public class PlaylistResourceTest {
 	@Test 
 	public void getTrackListPlaylistIdTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
-		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
+		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
 		when(mockPlaylistService.getTrackList(mockId)).thenReturn(mockTrackListDTO);
 
 		// act
-		var actual = sut.getTrackListPlaylistId(mockToken, mockId);
+		var actual = sut.getTrackListPlaylistId(MOCK_TOKEN, mockId);
 
 		// assert
 		assertEquals(200, actual.getStatus());
@@ -128,11 +128,11 @@ public class PlaylistResourceTest {
 	@Test
 	public void addTrackPlaylistIdTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
-		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
+		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
 		when(mockPlaylistService.addTrack(mockId, mockTrackDTO)).thenReturn(mockTrackListDTO);
 
 		// act
-		var actual = sut.addTrackPlaylistId(mockToken, mockId, mockTrackDTO);
+		var actual = sut.addTrackPlaylistId(MOCK_TOKEN, mockId, mockTrackDTO);
 
 		// assert
 		assertEquals(200, actual.getStatus());
@@ -142,11 +142,11 @@ public class PlaylistResourceTest {
 	@Test
 	public void deleteTrackPlaylistIdTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
-		when(mockLoginService.tokenExists(mockToken)).thenReturn(true);
+		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
 		when(mockPlaylistService.deleteTrack(mockId, mockId)).thenReturn(mockTrackListDTO);
 
 		// act
-		var actual = sut.deleteTrackPlaylistId(mockToken, mockId, mockId);
+		var actual = sut.deleteTrackPlaylistId(MOCK_TOKEN, mockId, mockId);
 
 		// assert
 		assertEquals(200, actual.getStatus());

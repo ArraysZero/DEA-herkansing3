@@ -28,19 +28,19 @@ public class PlaylistService {
 		return setOwnerForPlaylistList(token, playlistDAO.getAll());
 	}
 
-	public PlayListListDTO deletePlaylist(int id) throws DataAccessException {
+	public PlayListListDTO deletePlaylist(String token, int id) throws DataAccessException {
 		playlistDAO.deleteById(id);
-		return playlistDAO.getAll();
+		return setOwnerForPlaylistList(token, playlistDAO.getAll());
 	}
 
-	public PlayListListDTO addPlaylist(PlayListDTO playlist) throws DataAccessException {
+	public PlayListListDTO addPlaylist(String token, PlayListDTO playlist) throws DataAccessException {
 		playlistDAO.addPlaylist(playlist);
-		return playlistDAO.getAll();
+		return setOwnerForPlaylistList(token, playlistDAO.getAll());
 	}
 
-	public PlayListListDTO editPlaylist(PlayListDTO playlist) throws DataAccessException {
+	public PlayListListDTO editPlaylist(String token, PlayListDTO playlist) throws DataAccessException {
 		playlistDAO.changePlaylistName(playlist.getId(), playlist.getName());
-		return playlistDAO.getAll();
+		return setOwnerForPlaylistList(token, playlistDAO.getAll());
 	}
 
 	public TrackListDTO getTrackList(int id) throws DataAccessException {
