@@ -26,7 +26,7 @@ public class CustomContextListener implements ServletContextListener {
 
 			createBatch(connection);
 			dataBatch(connection);
-		} catch (SQLException | IOException e) {
+		} catch (SQLException | IOException | DataAccessException e) {
 			// do nothing
 		}
 		// TODO Auto-generated method stub

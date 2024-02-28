@@ -6,7 +6,6 @@ import nl.dani.han.daos.PlaylistDAO;
 import nl.dani.han.daos.TrackDAO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.DataAccessException;
-//import nl.dani.han.exceptions.PlaylistException;
 
 
 public class TrackService {

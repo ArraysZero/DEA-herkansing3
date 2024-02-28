@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import nl.dani.han.database.DataAccess;
 import nl.dani.han.dtos.*;
 import nl.dani.han.exceptions.DataAccessException;
-//import nl.dani.han.exceptions.PlaylistException;
 
 public class PlaylistDAO{
 
@@ -29,7 +28,7 @@ public class PlaylistDAO{
 			while (result.next()) {
 				resultList.getPlaylists().add(
 						new PlayListDTO(result.getInt("id"), result.getString("name"), false,
-								getTracks(result.getInt("id")))); // TODO check if owner
+								getTracks(result.getInt("id"))));
 			}
 			return resultList;
 		} catch (SQLException | IOException e) {
@@ -50,7 +49,6 @@ public class PlaylistDAO{
 			} else {
 				return null;
 			}
-			// return resultList;
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}

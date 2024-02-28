@@ -10,21 +10,19 @@ import nl.dani.han.dtos.PlayListListDTO;
 import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.DataAccessException;
-//import nl.dani.han.exceptions.PlaylistException;
 
 public class PlaylistService {
 
 	@Inject
-	private PlaylistDAO playlistDAO; // = new PlaylistDAO();
+	private PlaylistDAO playlistDAO;
 
 	@Inject
-	private TrackDAO trackDAO; // = new TrackDAO();
+	private TrackDAO trackDAO;
 
 	@Inject
 	private LoginDAO loginDAO;
 
 	public PlayListListDTO getAllPlaylists(String token) throws DataAccessException {
-//		return playlistDAO.getAll();
 		return setOwnerForPlaylistList(token, playlistDAO.getPlaylists());
 	}
 

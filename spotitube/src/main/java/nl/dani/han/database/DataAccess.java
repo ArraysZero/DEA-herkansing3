@@ -8,14 +8,12 @@ import java.util.Properties;
 
 import nl.dani.han.App;
 import nl.dani.han.daos.DataInterface;
+import nl.dani.han.exceptions.DataAccessException;
 
 public class DataAccess implements DataInterface {
-	private String URL;
-	private String user;
-	private String passwd;
 
 	@Override
-	public Connection connect() throws SQLException, IOException {
+	public Connection connect() throws SQLException, IOException, DataAccessException {
 		Properties prop = new Properties();
 		prop.load(App.class.getClassLoader().getResourceAsStream("database.properties"));
 		String URL = prop.getProperty("jdbc.url");
@@ -25,10 +23,8 @@ public class DataAccess implements DataInterface {
 			Class.forName("org.h2.Driver");
 			return DriverManager.getConnection(URL);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DataAccessException(e);
 		}
-		return null;
 
 	}
 

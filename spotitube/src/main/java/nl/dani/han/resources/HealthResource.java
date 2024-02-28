@@ -32,12 +32,10 @@ public class HealthResource {
 
 	private ArrayList<String> readFromInputStream(InputStream inputStream)
 			throws IOException {
-		// StringBuilder resultStringBuilder = new StringBuilder();
 		ArrayList<String> batch = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				// resultStringBuilder.append(line).append("\n");
 				batch.add(line);
 			}
 		}
