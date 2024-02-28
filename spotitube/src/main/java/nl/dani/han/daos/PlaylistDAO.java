@@ -13,13 +13,12 @@ import nl.dani.han.dtos.*;
 import nl.dani.han.exceptions.DataAccessException;
 //import nl.dani.han.exceptions.PlaylistException;
 
-public class PlaylistDAO implements DataAccessObject{
+public class PlaylistDAO{
 
 	@Inject
 	private TrackDAO trackDAO;
 
-	@Override
-	public PlayListListDTO getAll() throws DataAccessException {
+	public PlayListListDTO getPlaylists() throws DataAccessException {
 
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
@@ -38,8 +37,7 @@ public class PlaylistDAO implements DataAccessObject{
 		}
 	}
 
-	@Override
-	public PlayListDTO getById(int id) throws DataAccessException {
+	public PlayListDTO getPlaylistById(int id) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -68,7 +66,7 @@ public class PlaylistDAO implements DataAccessObject{
 			var result = stmt.executeQuery();
 			while (result.next()) {
 				resultList.getTracks()
-						.add(trackDAO.getById(result.getInt("trackid")));
+						.add(trackDAO.getTrack(result.getInt("trackid")));
 			}
 			return resultList;
 		} catch (SQLException | IOException e) {
@@ -76,8 +74,7 @@ public class PlaylistDAO implements DataAccessObject{
 		}
 	}
 
-	@Override
-	public void deleteById(int id) throws DataAccessException {
+	public void deletePlaylist(int id) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());

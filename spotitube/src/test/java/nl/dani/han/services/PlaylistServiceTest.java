@@ -62,7 +62,7 @@ public class PlaylistServiceTest {
 	@Test
 	public void getAllPlaylistsTest() throws DataAccessException {
 		// arrange
-		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
+		when(mockPlaylistDAO.getPlaylists()).thenReturn(mockPlayListList);
 
 		// act
 		var actual = sut.getAllPlaylists(MOCK_TOKEN);
@@ -74,7 +74,7 @@ public class PlaylistServiceTest {
 	@Test
 	public void deletePlaylistTest() throws DataAccessException {
 		// arrange
-		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
+		when(mockPlaylistDAO.getPlaylists()).thenReturn(mockPlayListList);
 
 		// act
 		var actual = sut.deletePlaylist(MOCK_TOKEN, MOCK_ID);
@@ -86,7 +86,7 @@ public class PlaylistServiceTest {
 	@Test
 	public void addPlaylistTest() throws DataAccessException {
 		// arrange
-		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
+		when(mockPlaylistDAO.getPlaylists()).thenReturn(mockPlayListList);
 
 		// act
 		var actual = sut.addPlaylist(MOCK_TOKEN, mockPlayList);
@@ -98,7 +98,7 @@ public class PlaylistServiceTest {
 	@Test
 	public void editPlaylistTest() throws DataAccessException {
 		// arrange
-		when(mockPlaylistDAO.getAll()).thenReturn(mockPlayListList);
+		when(mockPlaylistDAO.getPlaylists()).thenReturn(mockPlayListList);
 
 		// act
 		var actual = sut.editPlaylist(MOCK_TOKEN, mockPlayList);

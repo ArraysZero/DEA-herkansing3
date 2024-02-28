@@ -20,7 +20,7 @@ public class TrackService {
 	public TrackListDTO getAvailableTracks(int playlistId) throws DataAccessException {
 
 		var playlistTracks = playlistDAO.getTracks(playlistId);
-		var allTracks = trackDAO.getAll();
+		var allTracks = trackDAO.getTracks();
 		return trackDAO.compareLists(allTracks, playlistTracks);
 	}
 

@@ -12,10 +12,9 @@ import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.DataAccessException;
 
-public class TrackDAO implements DataAccessObject {
+public class TrackDAO {
 
-	@Override
-	public TrackListDTO getAll() throws DataAccessException {
+	public TrackListDTO getTracks() throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -41,8 +40,7 @@ public class TrackDAO implements DataAccessObject {
 		}
 	}
 
-	@Override
-	public TrackDTO getById(int id) throws DataAccessException {
+	public TrackDTO getTrack(int id) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -69,8 +67,7 @@ public class TrackDAO implements DataAccessObject {
 		}
 	}
 
-	@Override
-	public void deleteById(int id) throws DataAccessException {
+	public void deleteTrack(int id) throws DataAccessException {
 		try (Connection connection = DataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());

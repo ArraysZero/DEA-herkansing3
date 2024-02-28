@@ -25,23 +25,23 @@ public class PlaylistService {
 
 	public PlayListListDTO getAllPlaylists(String token) throws DataAccessException {
 //		return playlistDAO.getAll();
-		return setOwnerForPlaylistList(token, playlistDAO.getAll());
+		return setOwnerForPlaylistList(token, playlistDAO.getPlaylists());
 	}
 
 	public PlayListListDTO deletePlaylist(String token, int id) throws DataAccessException {
-		playlistDAO.deleteById(id);
-		return setOwnerForPlaylistList(token, playlistDAO.getAll());
+		playlistDAO.deletePlaylist(id);
+		return setOwnerForPlaylistList(token, playlistDAO.getPlaylists());
 	}
 
 	public PlayListListDTO addPlaylist(String token, PlayListDTO playlist) throws DataAccessException {
 		playlist.setId(genId());
 		playlistDAO.addPlaylist(playlist, loginDAO.getUserToken(token).getUser());
-		return setOwnerForPlaylistList(token, playlistDAO.getAll());
+		return setOwnerForPlaylistList(token, playlistDAO.getPlaylists());
 	}
 
 	public PlayListListDTO editPlaylist(String token, PlayListDTO playlist) throws DataAccessException {
 		playlistDAO.changePlaylistName(playlist.getId(), playlist.getName());
-		return setOwnerForPlaylistList(token, playlistDAO.getAll());
+		return setOwnerForPlaylistList(token, playlistDAO.getPlaylists());
 	}
 
 	public TrackListDTO getTrackList(int id) throws DataAccessException {
@@ -86,7 +86,7 @@ public class PlaylistService {
 		int id;
 		do {
 			id= (int) (Math.random() * 10000);
-		} while (playlistDAO.getById(id) != null);
+		} while (playlistDAO.getPlaylistById(id) != null);
 
 		return id;
 	}

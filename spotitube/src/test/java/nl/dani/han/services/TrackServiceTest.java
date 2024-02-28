@@ -56,7 +56,7 @@ public class TrackServiceTest {
 	public void getAvailableTracksTestSucceeds() throws TrackException, DataAccessException {
 		// arrange
 		when(mockPlaylistDAO.getTracks(MOCK_ID)).thenReturn(mockTrackList);
-		when(mockTrackDAO.getAll()).thenReturn(mockTrackList);
+		when(mockTrackDAO.getTracks()).thenReturn(mockTrackList);
 		when(mockTrackDAO.compareLists(mockTrackList, mockTrackList)).thenReturn(mockTrackList);
 
 		// act

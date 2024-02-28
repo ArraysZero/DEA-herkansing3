@@ -10,7 +10,7 @@ import nl.dani.han.dtos.UserDTO;
 import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.LoginException;
 
-public class LoginDAO implements DataAccessObject {
+public class LoginDAO{
 
 	public UserDTO getUser(UserDTO user) throws DataAccessException {
 		try (var connection = DataAccess.connect()) {
@@ -55,20 +55,5 @@ public class LoginDAO implements DataAccessObject {
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}
-	}
-
-	@Override
-	public DataTransferObject getAll() throws DataAccessException {
-		return null;
-	}
-
-	@Override
-	public DataTransferObject getById(int id) throws DataAccessException {
-		return null;
-	}
-
-	@Override
-	public void deleteById(int id) throws DataAccessException {
-
 	}
 }
