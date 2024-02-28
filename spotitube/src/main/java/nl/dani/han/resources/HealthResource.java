@@ -20,7 +20,7 @@ public class HealthResource {
 	@GET
 	public Response healthCheck() {
 
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			createBatch(connection);
 			dataBatch(connection);
 		} catch (Exception e) {

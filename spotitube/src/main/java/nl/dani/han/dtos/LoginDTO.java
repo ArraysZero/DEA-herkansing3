@@ -1,6 +1,6 @@
 package nl.dani.han.dtos;
 
-public class LoginDTO extends DataTransferObject {
+public class LoginDTO {
 	private String token;
 	private String user;
 

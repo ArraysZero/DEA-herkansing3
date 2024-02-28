@@ -2,7 +2,7 @@ package nl.dani.han.dtos;
 
 import java.util.List;
 
-public class TrackListDTO extends DataTransferObject {
+public class TrackListDTO {
 	private List<TrackDTO> tracks;
 
 	public TrackListDTO() {

@@ -20,7 +20,7 @@ public class PlaylistDAO{
 
 	public PlayListListDTO getPlaylists() throws DataAccessException {
 
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "SELECT * FROM playlist";
@@ -38,7 +38,7 @@ public class PlaylistDAO{
 	}
 
 	public PlayListDTO getPlaylistById(int id) throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "SELECT * FROM playlist WHERE id = ?";
@@ -57,7 +57,7 @@ public class PlaylistDAO{
 	}
 
 	public TrackListDTO getTracks(int id) throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			var resultList = new TrackListDTO();
 			resultList.setTracks(new ArrayList<>());
 			String sql = "SELECT * FROM trackOnPlaylist WHERE playlistid = ?";
@@ -75,7 +75,7 @@ public class PlaylistDAO{
 	}
 
 	public void deletePlaylist(int id) throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "DELETE FROM playlist WHERE id = ?";
@@ -88,7 +88,7 @@ public class PlaylistDAO{
 	}
 
 	public void addPlaylist(PlayListDTO playList, String owner) throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "INSERT INTO playlist (id, name, owner) VALUES (?, ?, ?)";
@@ -104,7 +104,7 @@ public class PlaylistDAO{
 	}
 
 	public void addTrackToPlaylist(int playlist, int track) throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "INSERT INTO trackOnPlaylist (playlistid, trackid) VALUES (?, ?)";
@@ -118,7 +118,7 @@ public class PlaylistDAO{
 	}
 
 	public void changePlaylistName(int playlist, String name) throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "UPDATE playlist SET name = ? WHERE id = ?";
@@ -132,7 +132,7 @@ public class PlaylistDAO{
 	}
 
 	public void deleteTrackFromPlaylist(int playlist, int track) throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "DELETE FROM trackOnPlaylist WHERE playlistid = ? AND trackid = ?";
@@ -146,7 +146,7 @@ public class PlaylistDAO{
 	}
 
 	public String getOwner(int id) throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "SELECT * FROM playlist WHERE id = ?";

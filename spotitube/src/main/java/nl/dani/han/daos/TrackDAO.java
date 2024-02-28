@@ -15,7 +15,7 @@ import nl.dani.han.exceptions.DataAccessException;
 public class TrackDAO {
 
 	public TrackListDTO getTracks() throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "SELECT * FROM Track";
@@ -41,7 +41,7 @@ public class TrackDAO {
 	}
 
 	public TrackDTO getTrack(int id) throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "SELECT * FROM Track WHERE id = ?";
@@ -68,7 +68,7 @@ public class TrackDAO {
 	}
 
 	public void deleteTrack(int id) throws DataAccessException {
-		try (Connection connection = DataAccess.connect()) {
+		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "DELETE FROM track WHERE id = ?";

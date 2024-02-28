@@ -2,7 +2,7 @@ package nl.dani.han.dtos;
 
 import java.util.List;
 
-public class PlayListListDTO extends DataTransferObject {
+public class PlayListListDTO {
 	private List<PlayListDTO> playlists;
 	private int length;
 

@@ -1,8 +1,6 @@
 package nl.dani.han.dtos;
 
-import java.util.List;
-
-public class PlayListDTO extends DataTransferObject {
+public class PlayListDTO {
 	private int id;
 	private String name;
 	private boolean owner;

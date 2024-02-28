@@ -7,13 +7,15 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import nl.dani.han.App;
+import nl.dani.han.daos.DataInterface;
 
-public class DataAccess {
+public class DataAccess implements DataInterface {
 	private String URL;
 	private String user;
 	private String passwd;
 
-	public static Connection connect() throws SQLException, IOException {
+	@Override
+	public Connection connect() throws SQLException, IOException {
 		Properties prop = new Properties();
 		prop.load(App.class.getClassLoader().getResourceAsStream("database.properties"));
 		String URL = prop.getProperty("jdbc.url");

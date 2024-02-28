@@ -1,6 +1,6 @@
 package nl.dani.han.dtos;
 
-public class TrackDTO extends DataTransferObject {
+public class TrackDTO {
 	private int id;
 	private String title;
 	private String performer;

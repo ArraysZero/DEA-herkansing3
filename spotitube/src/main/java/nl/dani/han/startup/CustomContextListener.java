@@ -22,7 +22,7 @@ public class CustomContextListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		try (var connection = DataAccess.connect()) {
+		try (var connection = new DataAccess().connect()) {
 
 			createBatch(connection);
 			dataBatch(connection);
