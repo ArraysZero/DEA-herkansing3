@@ -2,9 +2,12 @@ package nl.dani.han.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import nl.dani.han.daos.LoginDAO;
+import nl.dani.han.dtos.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,10 +16,6 @@ import org.mockito.Mock;
 
 import nl.dani.han.daos.PlaylistDAO;
 import nl.dani.han.daos.TrackDAO;
-import nl.dani.han.dtos.PlayListDTO;
-import nl.dani.han.dtos.PlayListListDTO;
-import nl.dani.han.dtos.TrackDTO;
-import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.DataAccessException;
 //import nl.dani.han.exceptions.PlaylistException;
 
@@ -28,6 +27,7 @@ public class PlaylistServiceTest {
 	private TrackDTO mockTrack;
 	private TrackListDTO mockTrackList;
 	private PlayListDTO mockPlayList;
+	private UserDTO mockUserDTO;
 	private PlayListListDTO mockPlayListList;
 
 	@Mock
@@ -36,6 +36,9 @@ public class PlaylistServiceTest {
 	@Mock
 	TrackDAO mockTrackDAO;
 
+	@Mock
+	LoginDAO mockLoginDAO;
+
 	@InjectMocks
 	PlaylistService sut;
 
@@ -43,15 +46,18 @@ public class PlaylistServiceTest {
 	void setup() {
 		mockPlaylistDAO = mock(PlaylistDAO.class);
 		mockTrackDAO = mock(TrackDAO.class);
+		mockLoginDAO = mock(LoginDAO.class);
 
 		sut = new PlaylistService();
 		sut.setPlaylistDAO(mockPlaylistDAO);
 		sut.setTrackDAO(mockTrackDAO);
+		sut.setLoginDAO(mockLoginDAO);
 
 		mockPlayListList = mock(PlayListListDTO.class);
 		mockPlayList = mock(PlayListDTO.class);
 		mockTrackList = mock(TrackListDTO.class);
 		mockTrack = mock(TrackDTO.class);
+		mockUserDTO = mock(UserDTO.class);
 	}
 
 	@AfterEach
@@ -63,6 +69,8 @@ public class PlaylistServiceTest {
 	public void getAllPlaylistsTest() throws DataAccessException {
 		// arrange
 		when(mockPlaylistDAO.getPlaylists()).thenReturn(mockPlayListList);
+		when(mockLoginDAO.getUserToken(anyString())).thenReturn(mockUserDTO);
+		when(mockUserDTO.getUser()).thenReturn("user");
 
 		// act
 		var actual = sut.getAllPlaylists(MOCK_TOKEN);
@@ -87,6 +95,9 @@ public class PlaylistServiceTest {
 	public void addPlaylistTest() throws DataAccessException {
 		// arrange
 		when(mockPlaylistDAO.getPlaylists()).thenReturn(mockPlayListList);
+		when(mockLoginDAO.getUserToken(anyString())).thenReturn(mockUserDTO);
+		when(mockUserDTO.getUser()).thenReturn("user");
+
 
 		// act
 		var actual = sut.addPlaylist(MOCK_TOKEN, mockPlayList);

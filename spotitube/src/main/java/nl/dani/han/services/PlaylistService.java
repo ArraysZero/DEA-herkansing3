@@ -64,6 +64,10 @@ public class PlaylistService {
 		this.trackDAO = trackDAO;
 	}
 
+	public void setLoginDAO(LoginDAO loginDAO) {
+		this.loginDAO = loginDAO;
+	}
+
 	private PlayListListDTO setOwnerForPlaylistList(String token, PlayListListDTO playlists) throws DataAccessException {
 		for (int i = 0; i < playlists.getPlaylists().size(); i++) {
 			setOwner(token, playlists.getPlaylists().get(i));
