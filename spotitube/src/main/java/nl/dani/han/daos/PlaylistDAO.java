@@ -17,17 +17,18 @@ public class PlaylistDAO{
 	@Inject
 	private TrackDAO trackDAO;
 
-	public PlayListListDTO getPlaylists() throws DataAccessException {
+	public PlaylistListDataDTO getPlaylists() throws DataAccessException {
 
 		try (Connection connection = new DataAccess().connect()) {
-			PlayListListDTO resultList = new PlayListListDTO();
-			resultList.setPlaylists(new ArrayList<>());
+//			PlayListListDTO resultList = new PlayListListDTO();
+			PlaylistListDataDTO resultList = new PlaylistListDataDTO(new ArrayList<>());
+//			resultList.setPlaylists(new ArrayList<>());
 			String sql = "SELECT * FROM playlist";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			var result = stmt.executeQuery();
 			while (result.next()) {
 				resultList.getPlaylists().add(
-						new PlayListDTO(result.getInt("id"), result.getString("name"), false,
+						new PlaylistDataDTO(result.getInt("id"), result.getString("name"), result.getString("owner"),
 								getTracks(result.getInt("id"))));
 			}
 			return resultList;
@@ -36,7 +37,7 @@ public class PlaylistDAO{
 		}
 	}
 
-	public PlayListDTO getPlaylistById(int id) throws DataAccessException {
+	public PlaylistDataDTO getPlaylistById(int id) throws DataAccessException {
 		try (Connection connection = new DataAccess().connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
@@ -45,7 +46,7 @@ public class PlaylistDAO{
 			stmt.setInt(1, id);
 			var result = stmt.executeQuery();
 			if (result.next()) {
-				return new PlayListDTO(id, result.getString("name"), false, getTracks(id));
+				return new PlaylistDataDTO(id, result.getString("name"), result.getString("owner"), getTracks(id));
 			} else {
 				return null;
 			}

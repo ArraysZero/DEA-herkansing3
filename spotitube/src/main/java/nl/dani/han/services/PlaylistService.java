@@ -5,11 +5,10 @@ import javax.inject.Inject;
 import nl.dani.han.daos.LoginDAO;
 import nl.dani.han.daos.PlaylistDAO;
 import nl.dani.han.daos.TrackDAO;
-import nl.dani.han.dtos.PlayListDTO;
-import nl.dani.han.dtos.PlayListListDTO;
-import nl.dani.han.dtos.TrackDTO;
-import nl.dani.han.dtos.TrackListDTO;
+import nl.dani.han.dtos.*;
 import nl.dani.han.exceptions.DataAccessException;
+
+import java.util.ArrayList;
 
 public class PlaylistService {
 
@@ -23,23 +22,25 @@ public class PlaylistService {
 	private LoginDAO loginDAO;
 
 	public PlayListListDTO getAllPlaylists(String token) throws DataAccessException {
-		return setOwnerForPlaylistList(token, playlistDAO.getPlaylists());
+		var playlists = setOwnerForPlaylistList(token, playlistDAO.getPlaylists());
+		playlists.setLength(getLength(playlists));
+		return playlists;
 	}
 
 	public PlayListListDTO deletePlaylist(String token, int id) throws DataAccessException {
 		playlistDAO.deletePlaylist(id);
-		return setOwnerForPlaylistList(token, playlistDAO.getPlaylists());
+		return getAllPlaylists(token);
 	}
 
 	public PlayListListDTO addPlaylist(String token, PlayListDTO playlist) throws DataAccessException {
 		playlist.setId(genId());
 		playlistDAO.addPlaylist(playlist, loginDAO.getUserToken(token).getUser());
-		return setOwnerForPlaylistList(token, playlistDAO.getPlaylists());
+		return getAllPlaylists(token);
 	}
 
 	public PlayListListDTO editPlaylist(String token, PlayListDTO playlist) throws DataAccessException {
 		playlistDAO.changePlaylistName(playlist.getId(), playlist.getName());
-		return setOwnerForPlaylistList(token, playlistDAO.getPlaylists());
+		return getAllPlaylists(token);
 	}
 
 	public TrackListDTO getTrackList(int id) throws DataAccessException {
@@ -68,20 +69,19 @@ public class PlaylistService {
 		this.loginDAO = loginDAO;
 	}
 
-	private PlayListListDTO setOwnerForPlaylistList(String token, PlayListListDTO playlists) throws DataAccessException {
+	private PlayListListDTO setOwnerForPlaylistList(String token, PlaylistListDataDTO playlists) throws DataAccessException {
+		var playlistlist = new PlayListListDTO(new ArrayList<>(), 0);
+
 		for (int i = 0; i < playlists.getPlaylists().size(); i++) {
-			setOwner(token, playlists.getPlaylists().get(i));
+			playlistlist.getPlaylists().add(setOwner(token, playlists.getPlaylists().get(i)));
 		}
 
-		return playlists;
+		return playlistlist;
 	}
 
-	private PlayListDTO setOwner(String token, PlayListDTO playList) throws DataAccessException {
-		if (playlistDAO.getOwner(playList.getId()).equals(loginDAO.getUserToken(token).getUser())) {
-			playList.setOwner(true);
-		}
-
-		return playList;
+	private PlayListDTO setOwner(String token, PlaylistDataDTO playList) throws DataAccessException {
+		return new PlayListDTO(playList.getId(), playList.getName(),
+				playList.getOwner().equals(loginDAO.getUserToken(token).getUser()), playList.getTracks());
 	}
 
 	private int genId() throws DataAccessException {
@@ -91,5 +91,15 @@ public class PlaylistService {
 		} while (playlistDAO.getPlaylistById(id) != null);
 
 		return id;
+	}
+
+	private int getLength(PlayListListDTO playlists) {
+		int length = 0;
+		for (int i = 0; i < playlists.getPlaylists().size(); i++) {
+			for (int j = 0; j < playlists.getPlaylists().get(i).getTracks().getTracks().size(); j++) {
+				length += playlists.getPlaylists().get(i).getTracks().getTracks().get(j).getDuration();
+			}
+		}
+		return length;
 	}
 }
