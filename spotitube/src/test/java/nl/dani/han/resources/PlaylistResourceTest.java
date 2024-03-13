@@ -1,6 +1,8 @@
 package nl.dani.han.resources;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -25,6 +27,7 @@ public class PlaylistResourceTest {
 	private final int mockId = 1;
 	private PlayListListDTO mockPlayListList;
 	private LoginException mockLoginException;
+	private DataAccessException mockDataException;
 //	private PlaylistException mockPlaylistException;
 	private PlayListDTO mockPlayListDTO;
 	private TrackListDTO mockTrackListDTO;
@@ -45,6 +48,7 @@ public class PlaylistResourceTest {
 		mockLoginService = mock(LoginService.class);
 		mockPlayListList = mock(PlayListListDTO.class);
 		mockLoginException = mock(LoginException.class);
+		mockDataException = mock(DataAccessException.class);
 //		mockPlaylistException = mock(PlaylistException.class);
 		mockPlayListDTO = mock(PlayListDTO.class);
 		mockTrackListDTO = mock(TrackListDTO.class);
@@ -70,6 +74,32 @@ public class PlaylistResourceTest {
 	}
 
 	@Test
+	public void getAllPlaylistsTestUnhappyInvalidToken() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenReturn(false);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(LoginException.class, ()
+				-> sut.getAllPlaylists(MOCK_TOKEN));
+	}
+
+	@Test
+	public void getAllPlaylistsTestUnhappyDataAccessException() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenThrow(mockDataException);
+		when(mockPlaylistService.getAllPlaylists(MOCK_TOKEN)).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(DataAccessException.class, ()
+				-> sut.getAllPlaylists(MOCK_TOKEN));
+	}
+
+	@Test
 	public void deletePlaylistTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
@@ -81,6 +111,32 @@ public class PlaylistResourceTest {
 		// assert
 		assertEquals(200, actual.getStatus());
 		assertEquals(mockPlayListList, actual.getEntity());
+	}
+
+	@Test
+	public void deletePlaylistTestUnhappyInvalidToken() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenReturn(false);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(LoginException.class, ()
+				-> sut.deletePlaylist(MOCK_TOKEN, mockId));
+	}
+
+	@Test
+	public void deletePlaylistTestUnhappyDataAccessException() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenThrow(mockDataException);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(DataAccessException.class, ()
+				-> sut.deletePlaylist(MOCK_TOKEN, mockId));
 	}
 
 	@Test
@@ -97,7 +153,33 @@ public class PlaylistResourceTest {
 		assertEquals(mockPlayListList, actual.getEntity());
 	}
 
-	@Test 
+	@Test
+	public void addPlaylistUnhappyInvalidToken() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenReturn(false);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(LoginException.class, ()
+				-> sut.addPlaylist(MOCK_TOKEN, mockPlayListDTO));
+	}
+
+	@Test
+	public void addPlaylistUnhappyDataAccessException() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenThrow(mockDataException);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(DataAccessException.class, ()
+				-> sut.addPlaylist(MOCK_TOKEN, mockPlayListDTO));
+	}
+
+	@Test
 	public void editPlaylistTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
@@ -111,7 +193,33 @@ public class PlaylistResourceTest {
 		assertEquals(mockPlayListList, actual.getEntity());
 	}
 
-	@Test 
+	@Test
+	public void editPlaylistUnhappyInvalidToken() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenReturn(false);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(LoginException.class, ()
+				-> sut.editPlaylist(MOCK_TOKEN, mockId, mockPlayListDTO));
+	}
+
+	@Test
+	public void editPlaylistUnhappyDataAccessException() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenThrow(mockDataException);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(DataAccessException.class, ()
+				-> sut.addPlaylist(MOCK_TOKEN, mockPlayListDTO));
+	}
+
+	@Test
 	public void getTrackListPlaylistIdTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
@@ -123,6 +231,32 @@ public class PlaylistResourceTest {
 		// assert
 		assertEquals(200, actual.getStatus());
 		assertEquals(mockTrackListDTO, actual.getEntity());
+	}
+
+	@Test
+	public void getTrackListPlaylistIdUnhappyInvalidToken() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenReturn(false);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(LoginException.class, ()
+				-> sut.getTrackListPlaylistId(MOCK_TOKEN, mockId));
+	}
+
+	@Test
+	public void getTrackListPlaylistIdUnhappyDataAccessException() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenThrow(mockDataException);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(DataAccessException.class, ()
+				-> sut.getTrackListPlaylistId(MOCK_TOKEN, mockId));
 	}
 
 	@Test
@@ -140,6 +274,32 @@ public class PlaylistResourceTest {
 	}
 
 	@Test
+	public void addTrackPlaylistIdUnhappyInvalidToken() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenReturn(false);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(LoginException.class, ()
+				-> sut.addTrackPlaylistId(MOCK_TOKEN, mockId, mockTrackDTO));
+	}
+
+	@Test
+	public void addTrackPlaylistIdUnhappyDataAccessException() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenThrow(mockDataException);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(DataAccessException.class, ()
+				-> sut.addTrackPlaylistId(MOCK_TOKEN, mockId, mockTrackDTO));
+	}
+
+	@Test
 	public void deleteTrackPlaylistIdTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
 		when(mockLoginService.tokenExists(MOCK_TOKEN)).thenReturn(true);
@@ -151,5 +311,31 @@ public class PlaylistResourceTest {
 		// assert
 		assertEquals(200, actual.getStatus());
 		assertEquals(mockTrackListDTO, actual.getEntity());
+	}
+
+	@Test
+	public void deleteTrackPlaylistIdUnhappyInvalidToken() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenReturn(false);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(LoginException.class, ()
+				-> sut.deleteTrackPlaylistId(MOCK_TOKEN, mockId, mockId));
+	}
+
+	@Test
+	public void deleteTrackPlaylistIdUnhappyDataAccessException() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenThrow(mockDataException);
+		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(DataAccessException.class, ()
+				-> sut.deleteTrackPlaylistId(MOCK_TOKEN, mockId, mockId));
 	}
 }

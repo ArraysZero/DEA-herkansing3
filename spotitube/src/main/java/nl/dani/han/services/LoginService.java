@@ -35,7 +35,7 @@ public class LoginService {
 		return token;
 	}
 
-	public boolean tokenExists(String token) throws LoginException, DataAccessException {
+	public boolean tokenExists(String token) throws DataAccessException {
 		if (loginDAO.getUserToken(token) != null) {
 			return true;
 		} else {

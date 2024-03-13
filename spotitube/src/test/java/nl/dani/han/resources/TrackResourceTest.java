@@ -1,7 +1,9 @@
 package nl.dani.han.resources;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -21,6 +23,7 @@ import nl.dani.han.services.TrackService;
 public class TrackResourceTest {
 
 	private final String MOCKTOKEN = "mock-token";
+	private final int MOCKID = 0;
 
 	@Mock
 	private TrackService mockTrackService;
@@ -55,10 +58,23 @@ public class TrackResourceTest {
 		when(mockTrackService.getAvailableTracks(anyInt())).thenReturn(expected);
 
 		// act
-		var actual = sut.getAvailableTracks(MOCKTOKEN, 0);
+		var actual = sut.getAvailableTracks(MOCKTOKEN, MOCKID);
 
 		// assert
 		assertEquals(200, actual.getStatus());
 		assertEquals(expected, actual.getEntity());
+	}
+
+	@Test
+	public void getAvailableTracksUnhappyInvalidToken() throws LoginException, DataAccessException {
+		// arrange
+		when(mockLoginService.tokenExists(anyString())).thenReturn(false);
+//		when(mockPlaylistService.getAllPlaylists(anyString())).thenReturn(mockPlayListList);
+
+		// act
+
+		// assert
+		Exception exception = assertThrows(LoginException.class, ()
+				-> sut.getAvailableTracks(MOCKTOKEN, MOCKID));
 	}
 }

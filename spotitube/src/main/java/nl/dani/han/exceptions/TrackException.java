@@ -1,6 +1,6 @@
 package nl.dani.han.exceptions;
 
-public class TrackException extends Exception {
+public class TrackException extends RuntimeException {
 
 	public TrackException(String message) {
 		super(message);
