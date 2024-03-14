@@ -12,10 +12,15 @@ import nl.dani.han.dtos.TrackDTO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.DataAccessException;
 
+import javax.inject.Inject;
+
 public class TrackDAO {
 
+	@Inject
+	DataAccess dataAccess;
+
 	public TrackListDTO getTracks() throws DataAccessException {
-		try (Connection connection = new DataAccess().connect()) {
+		try (Connection connection = dataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "SELECT * FROM Track";
@@ -41,7 +46,7 @@ public class TrackDAO {
 	}
 
 	public TrackDTO getTrack(int id) throws DataAccessException {
-		try (Connection connection = new DataAccess().connect()) {
+		try (Connection connection = dataAccess.connect()) {
 			PlayListListDTO resultList = new PlayListListDTO();
 			resultList.setPlaylists(new ArrayList<>());
 			String sql = "SELECT * FROM Track WHERE id = ?";
@@ -67,19 +72,6 @@ public class TrackDAO {
 		}
 	}
 
-	public void deleteTrack(int id) throws DataAccessException {
-		try (Connection connection = new DataAccess().connect()) {
-			PlayListListDTO resultList = new PlayListListDTO();
-			resultList.setPlaylists(new ArrayList<>());
-			String sql = "DELETE FROM track WHERE id = ?";
-			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, id);
-			stmt.execute();
-		} catch (SQLException | IOException e) {
-			throw new DataAccessException(e.getMessage());
-		}
-	}
-
 	public TrackListDTO compareLists(TrackListDTO base, TrackListDTO compared) {
 		ArrayList<TrackDTO> tracks = new ArrayList<>();
 		for (int i = base.getTracks().size() - 1; i >= 0; i--) {
@@ -96,5 +88,9 @@ public class TrackDAO {
 		}
 
 		return new TrackListDTO(tracks);
+	}
+
+	public void setDataAccess(DataAccess dataAccess) {
+		this.dataAccess = dataAccess;
 	}
 }

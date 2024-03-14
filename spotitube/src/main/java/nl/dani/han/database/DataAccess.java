@@ -23,7 +23,7 @@ public class DataAccess implements DataInterface {
 			Class.forName("org.h2.Driver");
 			return DriverManager.getConnection(URL);
 		} catch (ClassNotFoundException e) {
-			throw new DataAccessException(e);
+			throw new DataAccessException(e.getMessage());
 		}
 
 	}

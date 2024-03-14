@@ -10,10 +10,15 @@ import nl.dani.han.dtos.UserDTO;
 import nl.dani.han.exceptions.DataAccessException;
 import nl.dani.han.exceptions.LoginException;
 
+import javax.inject.Inject;
+
 public class LoginDAO{
 
+	@Inject
+	private DataAccess dataAccess;
+
 	public UserDTO getUser(UserDTO user) throws DataAccessException {
-		try (Connection connection = new DataAccess().connect()) {
+		try (Connection connection = dataAccess.connect()) {
 			String sql = "SELECT * FROM users WHERE name = ? AND password = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, user.getUser());
@@ -30,7 +35,7 @@ public class LoginDAO{
 	}
 
 	public UserDTO getUserToken(String token) throws DataAccessException {
-		try (var connection = new DataAccess().connect()) {
+		try (var connection = dataAccess.connect()) {
 			String sql = "SELECT * FROM users WHERE token = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, token);
@@ -45,15 +50,19 @@ public class LoginDAO{
 		}
 	}
 
-	public void addToken(String user, String token) throws LoginException, DataAccessException {
-		try (var connection = new DataAccess().connect()) {
+	public boolean addToken(String user, String token) throws LoginException, DataAccessException {
+		try (var connection = dataAccess.connect()) {
 			String sql = "UPDATE users SET token = ? WHERE name = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, token);
 			stmt.setString(2, user);
-			stmt.execute();
+			return stmt.execute();
 		} catch (SQLException | IOException e) {
 			throw new DataAccessException(e.getMessage());
 		}
+	}
+
+	public void setDataAccess(DataAccess dataAccess) {
+		this.dataAccess = dataAccess;
 	}
 }

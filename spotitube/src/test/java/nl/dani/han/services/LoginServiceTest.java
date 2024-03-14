@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -52,7 +53,7 @@ public class LoginServiceTest {
 	@Test
 	public void loginTestSucceeds() throws LoginException, DataAccessException {
 		// arrange
-		when(mockLoginDAO.getUser(mockUser)).thenReturn(mockUser);
+		when(mockLoginDAO.getUser(any())).thenReturn(mockUser);
 
 		// act
 		var actual = sut.login(mockUser);

@@ -6,7 +6,4 @@ public class LoginException extends RuntimeException {
 		super(message);
 	}
 
-	public LoginException(Throwable cause) {
-		super(cause);
-	}
 }

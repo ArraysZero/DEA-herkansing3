@@ -16,7 +16,7 @@ import nl.dani.han.daos.TrackDAO;
 import nl.dani.han.dtos.TrackListDTO;
 import nl.dani.han.exceptions.DataAccessException;
 //import nl.dani.han.exceptions.PlaylistException;
-import nl.dani.han.exceptions.TrackException;
+
 
 public class TrackServiceTest {
 
@@ -53,7 +53,7 @@ public class TrackServiceTest {
 	}
 
 	@Test
-	public void getAvailableTracksTestSucceeds() throws TrackException, DataAccessException {
+	public void getAvailableTracksTestSucceeds() throws DataAccessException {
 		// arrange
 		when(mockPlaylistDAO.getTracks(MOCK_ID)).thenReturn(mockTrackList);
 		when(mockTrackDAO.getTracks()).thenReturn(mockTrackList);
